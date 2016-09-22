@@ -1,0 +1,23 @@
+{
+  "name": "nodeapi",
+  "version": "6.6.0",
+  "description": "nodeapi simple",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "graceful-fs": "^4.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodeapi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aligurbuz"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "aligurbuz",
+  "license": "ISC"
+}
