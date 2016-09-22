@@ -74,7 +74,7 @@ app.get("/service/:name",function (request,response,next)
   {
 
     //get controller
-    var controller=require("./app/"+name+"/index");
+    var controller=require("./app/v"+config.version+"/"+name+"/index");
   }
 
   //response
