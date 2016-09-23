@@ -104,6 +104,10 @@ app.get("/service/:name",function (request,response,next)
 
   controller.index(function (data)
   {
+    if(typeof data!=="object")
+    {
+      res.json({"success":false,"message":"data is not object"});
+    }
     res.json({success:true,data:data});
   });
 
