@@ -4,7 +4,7 @@
  * @param {object} req
  * @public config.js
  */
-GLOBAL.config = require("./config/config");
+global.config = require("./config/config");
 
 /**
  * Get base provider for app.
@@ -12,7 +12,15 @@ GLOBAL.config = require("./config/config");
  * @param {object} req
  * @public config.js
  */
-GLOBAL.base = require("./provider/base");
+global.base = require("./provider/base");
+
+/**
+ * Get service provider for app.
+ *
+ * @param {object} req
+ * @public config.js
+ */
+global.service = require("./provider/service");
 
 /**
  * Start express project.
@@ -52,15 +60,24 @@ app.get("/service/:name",function (request,response,next)
 {
 
   /**
-   * Get config for app settings.
+   * Get global request for app settings.
    *
    * @param {object} req
    * @public config.js
    */
-  GLOBAL.req=request;
+  global.req=request;
+
+  /**
+   * Get global response for app settings.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.res=response;
 
   //json authorize true
-  response.setHeader('Content-Type', 'application/json');
+  // response.setHeader('Content-Type', 'application/json');
+  //buydu sildin
 
   //get name
   var name=request.params.name;
@@ -77,10 +94,22 @@ app.get("/service/:name",function (request,response,next)
     var controller=require("./app/v"+config.version+"/"+name+"/index");
   }
 
+  controller.index(function (data)
+  {
+    res.json({success:true,data:data});
+  });
+
+  // bırak bana :D
+  // bak simdi moruk controller.index() bu sekliyle soyle calısıyor
+  // iyi izle
   //response
-  response.json({"success":true,"data":controller.index()});
+  /*response.json({"success":true,"data":controller.index(function (result)
+  {
+    return result;
+  })});*/
 
 });
+
 
 /**
  * listen port.

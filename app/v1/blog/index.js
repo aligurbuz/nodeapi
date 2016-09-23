@@ -1,12 +1,21 @@
 //blog function
 module.exports = {
-  index: function () {
+  index: function (callback) {
 
-    //values
+    //set array object
     var data = new Object();
-    data.ip=base.ip();
 
-    //return
-    return data;
+    //get ip from base
+    data.ip = base.ip();
+
+    //get foo key from redis
+    service.redis(function(result)
+    {
+      data.redis=result;
+      callback(data);
+    });
+
+
+
   }
 };

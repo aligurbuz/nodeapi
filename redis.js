@@ -35,11 +35,9 @@ app.get("/redis",function (request,response,next)
 },function (request,response,next)
 {
 
-  //json authorize true
-  response.setHeader('Content-Type', 'application/json');
 
   //response
-  response.json({"success":true,"data":"redis"});
+  response.send("redis");
 
 });
 

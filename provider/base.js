@@ -9,5 +9,9 @@ module.exports = {
 
     //return
     return ip;
+  },
+  example : function(callback)
+  {
+    return callback();
   }
 };
