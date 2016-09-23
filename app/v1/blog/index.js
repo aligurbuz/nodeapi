@@ -21,6 +21,11 @@ module.exports = {
       {
         callback(data);
 
+      })
+
+      .catch(function(error)
+      {
+        callback(error);
       });
 
   }
