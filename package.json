@@ -5,7 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.14.0",
-    "graceful-fs": "^4.1.6"
+    "graceful-fs": "^4.1.6",
+    "promise": "^7.1.1"
   },
   "devDependencies": {},
   "scripts": {

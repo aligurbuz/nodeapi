@@ -1,15 +1,19 @@
 //example function
 module.exports = {
-  index: function () {
+  index: function (callback) {
 
-    //values
-    var data = new Object();
-    //write your code as array
-    //example
-    //data.foo="bar";
+    new Promise(function (resolve,reject)
+    {
+      //data here
 
-    //return
-    return data;
+      //resolve data
+      resolve(data);
+
+    })
+      .then(function(data)
+      {
+        callback(data);
+      });
 
   }
 };

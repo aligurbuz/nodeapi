@@ -7,6 +7,14 @@
 global.config = require("./config/config");
 
 /**
+ * Get config for app settings.
+ *
+ * @param {object} req
+ * @public config.js
+ */
+global.promise = require("promise");
+
+/**
  * Get base provider for app.
  *
  * @param {object} req

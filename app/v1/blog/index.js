@@ -1,19 +1,33 @@
-//blog function
 module.exports = {
   index: function (callback) {
 
-    //set array object
-    var data = new Object();
-
-    //get ip from base
-    data.ip = base.ip();
-
-    //get foo key from redis
-    service.redis(function(result)
+    new Promise(function(resolve,reject)
     {
-      data.redis=result;
-      callback(data);
-    });
+      //set array object
+      var data = new Object();
+
+      //get ip from base
+      data.ip = base.ip();
+
+      service.redis(function(result)
+      {
+        data.redis=result;
+        resolve(data);
+      });
+
+
+
+    })
+
+      .then(function(data)
+      {
+        callback(data);
+
+      });
+
+
+
+
 
 
 
