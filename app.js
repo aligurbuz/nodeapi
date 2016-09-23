@@ -107,15 +107,6 @@ app.get("/service/:name",function (request,response,next)
     res.json({success:true,data:data});
   });
 
-  // bırak bana :D
-  // bak simdi moruk controller.index() bu sekliyle soyle calısıyor
-  // iyi izle
-  //response
-  /*response.json({"success":true,"data":controller.index(function (result)
-  {
-    return result;
-  })});*/
-
 });
 
 
