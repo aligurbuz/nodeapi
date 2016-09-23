@@ -84,7 +84,7 @@ app.get("/service/:name",function (request,response,next)
   global.res=response;
 
   //json authorize true
-  // response.setHeader('Content-Type', 'application/json');
+  response.setHeader('Content-Type', 'application/json');
   //buydu sildin
 
   //get name
