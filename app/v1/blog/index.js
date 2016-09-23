@@ -15,8 +15,6 @@ module.exports = {
         resolve(data);
       });
 
-
-
     })
 
       .then(function(data)
@@ -24,12 +22,6 @@ module.exports = {
         callback(data);
 
       });
-
-
-
-
-
-
 
   }
 };
