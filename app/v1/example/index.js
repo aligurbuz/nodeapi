@@ -4,7 +4,11 @@ module.exports = {
 
     new Promise(function (resolve,reject)
     {
-      //data here
+      //init data object
+      var data=new object();
+
+      //data
+      data.test="test";
 
       //resolve data
       resolve(data);
