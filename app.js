@@ -61,7 +61,7 @@ var app=express();
  * @param {object} req
  * @public
  */
-app.get("/service/:name",function (request,response,next)
+app.get("/service/:name/:method?",function (request,response,next)
 {
 
   //auth check
@@ -99,6 +99,9 @@ app.get("/service/:name",function (request,response,next)
   //get name
   var name=request.params.name;
 
+  //get method
+  var method=request.params.method;
+
   if(name==="test")
   {
     //get controller
@@ -106,19 +109,38 @@ app.get("/service/:name",function (request,response,next)
   }
   else
   {
-
     //get controller
     var controller=require("./app/v"+config.version+"/"+name+"/index");
   }
 
-  controller.index(function (data)
+  if(method)
   {
-    if(typeof data!=="object")
+    //get method if it is true
+    var myfunc=controller[method];
+  }
+  else
+  {
+    //get method if it is false
+    var myfunc=controller.index;
+  }
+
+  if(typeof myfunc=="function")
+  {
+    myfunc(function (data)
     {
-      res.json({"success":false,"message":"data is not object"});
-    }
-    res.json({success:true,data:data});
-  });
+      if(typeof data!=="object")
+      {
+        res.json({"success":false,"message":"data is not object"});
+      }
+
+      res.json({success:true,data:data});
+    });
+  }
+  else
+  {
+    res.json({"success":false,"message":"no access"});
+  }
+
 
 });
 
