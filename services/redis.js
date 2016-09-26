@@ -14,16 +14,41 @@ module.exports = {
     {
       client.get(data.get, function (err, reply) {
 
-        if (err) throw(err);
+        if(err)
+        {
+          callback(null);
+        }
+        else
+        {
+          callback(reply);
+        }
 
-        callback(reply);
+
       });
+
+    }
+
+    if(data.type=="set")
+    {
+      client.set(data.set.key,data.set.value,function (err,reply)
+      {
+        if(err)
+        {
+          callback(null);
+        }
+        else
+        {
+          callback(reply);
+        }
+      });
+
 
     }
 
 
     //usage
     //service.get("redis",callback,{type:'get',get:'foo'});
+    //service.set("redis",callback,{type:'set',set:{key:'key',value:'value'});
 
 
   }

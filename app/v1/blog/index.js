@@ -12,12 +12,7 @@ module.exports = {
 
       data.host=base.host();
 
-      service.get("redis",function(result)
-      {
-        data.redis=result;
-        resolve(data);
-
-      },{type:'get',get:'foo'});
+      resolve(data);
 
     })
 
