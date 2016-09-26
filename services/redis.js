@@ -1,11 +1,13 @@
 
+var redis_port=6379;
+
 //redis function
 module.exports = {
 
   index: function (data,callback) {
 
     var redis = require("redis");
-    var client = redis.createClient(6379, base.host());
+    var client = redis.createClient(redis_port, base.host());
 
 
     if(data.type=="get")
