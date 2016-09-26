@@ -1,4 +1,6 @@
 //base function
+const url=require("url");
+
 module.exports = {
 
   ip: function () {
@@ -10,8 +12,13 @@ module.exports = {
     //return
     return ip;
   },
-  example : function(callback)
+  host : function()
   {
-    return callback();
+    //get host from request variable
+    var host=req.headers.host;
+    var host=host.replace(":"+config.port,"",host);
+
+    //return
+    return host;
   }
 };

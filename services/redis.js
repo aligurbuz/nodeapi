@@ -5,7 +5,7 @@ module.exports = {
   index: function (data,callback) {
 
     var redis = require("redis");
-    var client = redis.createClient(6379, '192.168.33.10');
+    var client = redis.createClient(6379, base.host());
 
 
     if(data.type=="get")

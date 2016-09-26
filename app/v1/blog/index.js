@@ -1,3 +1,4 @@
+
 module.exports = {
   index: function (callback) {
 
@@ -8,6 +9,8 @@ module.exports = {
 
       //get ip from base
       data.ip = base.ip();
+
+      data.host=base.host();
 
       service.get("redis",function(result)
       {
