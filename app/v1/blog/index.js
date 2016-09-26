@@ -9,11 +9,12 @@ module.exports = {
       //get ip from base
       data.ip = base.ip();
 
-      service.redis(function(result)
+      service.get("redis",function(result)
       {
         data.redis=result;
         resolve(data);
-      });
+
+      },{type:'get',get:'foo'});
 
     })
 

@@ -1,4 +1,13 @@
 /**
+ * get path for main directory.
+ *
+ * @param {object} req
+ * @public
+ */
+GLOBAL.path = require('path');
+GLOBAL.appDir = path.dirname(require.main.filename);
+
+/**
  * Get config for app settings.
  *
  * @param {object} req

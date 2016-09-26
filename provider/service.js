@@ -1,20 +1,19 @@
 
 //redis function
 module.exports = {
-  output: function (callback) {
-    callback();
-  },
-  redis: function (callback) {
 
-    var redis = require("redis");
-    var client = redis.createClient(6379, '192.168.33.10');
+  get: function (service=null,callback,data=null) {
 
-    client.get("foo", function (err, reply) {
 
-      if (err) throw(err);
+    if(service!==null)
+    {
+      var servicename=require(""+appDir+"/services/"+service);
 
-      callback(reply);
-    });
+      servicename.index(data,function(result)
+      {
+        callback(result);
+      });
+    }
 
 
   }
