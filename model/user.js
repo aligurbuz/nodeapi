@@ -1,26 +1,28 @@
 
-
-
 //redis function
 module.exports = {
 
   get: function () {
 
+    //configuration database
+    var database=require(""+appDir+"/config/database");
+
+    //sequelize modul
     var Sequelize=require("sequelize");
-    var connection = new Sequelize('Prosystem','root','laraappdevman*09', {
-      host: 'localhost',
-      dialect: 'mysql',
+
+    //set connection
+    var connection = new Sequelize(database.database,database.user,database.password, {
+      host: database.host,
+      dialect: database.dialect,
 
       pool: {
         max: 5,
         min: 0,
         idle: 10000
-      },
-
-      // SQLite only
-      //storage: 'path/to/database.sqlite'
+      }
     });
 
+    //table definition
     var User = connection.define('user', {
       firstName: {
         type: Sequelize.STRING
