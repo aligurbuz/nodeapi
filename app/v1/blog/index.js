@@ -15,15 +15,16 @@ module.exports = {
 
       service.model("user",function(model)
       {
-        model.findAll().then(function(user)
+        model.sync().then(function()
         {
-          data.y=user;
-          resolve(data);
-        })
+          model.findAll().then(function(user)
+          {
+            data.y=user;
+            resolve(data);
+          })
+        });
+
       });
-
-
-
 
     })
 
