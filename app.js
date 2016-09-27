@@ -65,12 +65,12 @@ app.get("/service/:name/:method?",function (request,response,next)
 {
 
   //auth check
-  //if(auth.get(req)) { return next();}
-  return next();
+  var auth=require("./middleware/auth");
+  if(auth.get(request)) { return next();}
 
   //json authorize false
-  //res.setHeader('Content-Type', 'application/json');
-  //res.json({"success":false,"message":"You are not authorized for this service"});
+  response.setHeader('Content-Type', 'application/json');
+  response.json({"success":false,"message":"You are not authorized for this service"});
 
 //next blog
 },function (request,response,next)
