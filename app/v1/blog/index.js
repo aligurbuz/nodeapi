@@ -12,7 +12,18 @@ module.exports = {
 
       data.host=base.host();
 
-      resolve(data);
+
+      service.model("user",function(model)
+      {
+        model.findAll().then(function(user)
+        {
+          data.y=user;
+          resolve(data);
+        })
+      });
+
+
+
 
     })
 

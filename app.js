@@ -109,6 +109,7 @@ app.get("/service/:name/:method?",function (request,response,next)
   }
   else
   {
+
     //get controller
     var controller=require("./app/v"+config.version+"/"+name+"/index");
   }

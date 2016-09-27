@@ -16,5 +16,14 @@ module.exports = {
     }
 
 
+  },
+
+  model : function (model=null,callback)
+  {
+    if(model!==null)
+    {
+      var modelname=require(""+appDir+"/model/"+model);
+      callback(modelname.get());
+    }
   }
 };
