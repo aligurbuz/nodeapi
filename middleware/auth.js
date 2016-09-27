@@ -1,10 +1,6 @@
 //in array module
 var in_array = require('in_array');
-
-//userlist
-var userlist=[
-  'testuser'
-];
+var configtoken=require(""+appDir+"/config/token");
 
 // exports function
 module.exports =
@@ -16,7 +12,7 @@ module.exports =
     var token=req.query._token;
 
     //token control
-    if(in_array(token,userlist))
+    if(in_array(token,configtoken))
     {
       //true
       return true;
