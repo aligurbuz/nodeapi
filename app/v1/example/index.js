@@ -1,29 +1,38 @@
-var model=require(""+appDir+"/app/v"+config.version+"/example/model/index");
-//example function
+/**
+ * Function example method ; index
+ * Examples:
+ *
+ *     // Accept: application/json
+ *     promise then catch methoding
+ *
+ * @param {String|Array} types...
+ * @return {json}
+ * @public
+ */
 module.exports = {
   index: function (callback) {
 
-    new Promise(function (resolve,reject)
-    {
-      //init data object
-      var data=new object();
+    /////////////////////////////////////
+    new Promise(function(resolve,reject) {
 
-      //data
+      //set data object
+      var data = new Object();
       data.test="test";
 
-      //resolve data
-      resolve(data);
-
     })
-      .then(function(data)
-      {
+
+      ////////////////////////////
+      //promise then
+      .then(function(data) {
         callback(data);
       })
 
-      .catch(function(error)
-      {
+      ///////////////////////////
+      //promise catch
+      .catch(function(error) {
         callback(error);
       });
 
   }
+
 };
