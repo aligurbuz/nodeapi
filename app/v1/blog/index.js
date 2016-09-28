@@ -2,34 +2,54 @@
 module.exports = {
   index: function (callback) {
 
-    new Promise(function(resolve,reject)
-    {
-      //set array object
+    new Promise(function(resolve,reject) {
+
+      //set data object
       var data = new Object();
 
-      //get ip from base
-      data.ip = base.ip();
-
-      data.host=base.host();
-
-
-     model.user(function(user)
-     {
-       data.y=user;
+      //model get user
+      model.user(function(user) {
+       data.result=user;
        resolve(data);
+      });
 
-     });
+     })
+
+       //promise then
+      .then(function(data) {
+        callback(data);
+      })
+
+      //promise catch
+      .catch(function(error) {
+        callback(error);
+      });
+
+  },
+
+  create : function (callback) {
+
+    //promise start
+    new Promise(function(resolve,reject) {
+
+      //set data object
+      var data = new Object();
+
+      //model create
+      model.create(function(result) {
+        data.postStatus=result;
+        resolve(data);
+      });
 
     })
 
-      .then(function(data)
-      {
+      //promise then
+      .then(function(data) {
         callback(data);
-
       })
 
-      .catch(function(error)
-      {
+      //promise catch
+      .catch(function(error) {
         callback(error);
       });
 

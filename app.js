@@ -61,7 +61,12 @@ var app=express();
  * @param {object} req
  * @public
  */
-app.get("/service/:name/:method?",function (request,response,next)
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+app.all("/service/:name/:method?",function (request,response,next)
 {
 
   //auth check
