@@ -1,4 +1,3 @@
-var model=require(""+appDir+"/app/v"+config.version+"/blog/model/index");
 
 module.exports = {
   index: function (callback) {

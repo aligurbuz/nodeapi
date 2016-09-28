@@ -125,6 +125,8 @@ app.get("/service/:name/:method?",function (request,response,next)
     var myfunc=controller.index;
   }
 
+  global.model=require("./app/v"+config.version+"/"+name+"/model/index");
+
   if(typeof myfunc=="function")
   {
     myfunc(function (data)
