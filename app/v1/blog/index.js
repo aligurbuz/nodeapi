@@ -1,3 +1,4 @@
+var model=require(""+appDir+"/app/v"+config.version+"/blog/model/index");
 
 module.exports = {
   index: function (callback) {
@@ -13,18 +14,12 @@ module.exports = {
       data.host=base.host();
 
 
-      service.model("user",function(model)
-      {
-        model.sync().then(function()
-        {
-          model.findAll().then(function(user)
-          {
-            data.y=user;
-            resolve(data);
-          })
-        });
+     model.index(function(user)
+     {
+       data.y=user;
+       resolve(data);
 
-      });
+     });
 
     })
 

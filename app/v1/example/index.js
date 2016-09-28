@@ -1,3 +1,4 @@
+var model=require(""+appDir+"/app/v"+config.version+"/example/model/index");
 //example function
 module.exports = {
   index: function (callback) {
