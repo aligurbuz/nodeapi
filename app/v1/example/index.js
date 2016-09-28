@@ -1,5 +1,5 @@
 /**
- * Function example method ; index
+ * Function blog method ; index
  * Examples:
  *
  *     // Accept: application/json
@@ -9,8 +9,9 @@
  * @return {json}
  * @public
  */
-module.exports = {
-  index: function (callback) {
+class blog {
+
+  index(callback) {
 
     /////////////////////////////////////
     new Promise(function(resolve,reject) {
@@ -35,4 +36,6 @@ module.exports = {
 
   }
 
-};
+}
+
+module.exports=new blog();

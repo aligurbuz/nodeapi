@@ -25,21 +25,5 @@ module.exports = {
       var modelname=require(""+appDir+"/model/"+model);
       callback(modelname.get());
     }
-  },
-
-  api : function (callback)
-  {
-    //start promise
-    new Promise(callback)
-
-      //promise then
-      .then(function() {
-        callback("asa");
-      })
-
-      //promise catch
-      .catch(function(error) {
-        callback(error);
-      });
   }
 };

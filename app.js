@@ -117,6 +117,8 @@ app.all("/service/:name/:method?",function (request,response,next)
 
     //get controller
     var controller=require("./app/v"+config.version+"/"+name+"/index");
+
+
   }
 
   if(method)

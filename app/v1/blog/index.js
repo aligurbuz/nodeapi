@@ -9,8 +9,9 @@
  * @return {json}
  * @public
  */
-module.exports = {
-  index: function (callback) {
+class blog {
+
+  index(callback) {
 
     /////////////////////////////////////
     new Promise(function(resolve,reject) {
@@ -38,7 +39,7 @@ module.exports = {
         callback(error);
       });
 
-  },
+  }
 
   /**
    * Function blog method ; create
@@ -51,7 +52,7 @@ module.exports = {
    * @return {json}
    * @public
    */
-  create : function (callback) {
+  create(callback) {
 
     /////////////////////////////////////
     //promise start
@@ -81,4 +82,6 @@ module.exports = {
       });
 
   }
-};
+}
+
+module.exports=new blog();
