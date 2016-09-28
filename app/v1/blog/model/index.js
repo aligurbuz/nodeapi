@@ -1,6 +1,6 @@
 
 module.exports = {
-  index: function (callback) {
+  user: function (callback) {
 
       service.model("user",function(model)
       {

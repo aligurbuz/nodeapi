@@ -13,7 +13,7 @@ module.exports = {
       data.host=base.host();
 
 
-     model.index(function(user)
+     model.user(function(user)
      {
        data.y=user;
        resolve(data);
