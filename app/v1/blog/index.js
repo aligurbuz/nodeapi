@@ -9,35 +9,34 @@
  * @return {json}
  * @public
  */
+
 class blog {
 
   index(callback) {
 
+    //set data object
+    var data = new Object();
+
     /////////////////////////////////////
-    new Promise(function(resolve,reject) {
+    //async parallel
+    async.parallel([
 
-      //set data object
-      var data = new Object();
-
+    function (asyncCall)
+    {
       //model get user
       model.user(function(user) {
-       data.result=user;
-       resolve(data);
+        data.result=user;
+        asyncCall(null,data);
+
       });
+    }
 
-     })
 
-      ////////////////////////////
-       //promise then
-      .then(function(data) {
-        callback(data);
-      })
+  ],function(err,results)
+    {
+      callback(results);
+    });
 
-      ///////////////////////////
-      //promise catch
-      .catch(function(error) {
-        callback(error);
-      });
 
   }
 
@@ -54,34 +53,30 @@ class blog {
    */
   create(callback) {
 
+    //set data object
+    var data = new Object();
+
     /////////////////////////////////////
-    //promise start
-    new Promise(function(resolve,reject) {
+    //async parallel
+    async.parallel([
 
-      //set data object
-      var data = new Object();
+      function (asyncCall)
+      {
+        //model create
+        model.create(function(result) {
+          data.postStatus=result;
+          asyncCall(null,data);
+        });
+      }
 
-      //model create
-      model.create(function(result) {
-        data.postStatus=result;
-        resolve(data);
-      });
+    ],function (err,results)
+    {
+      callback(results);
+    });
 
-    })
-
-      ////////////////////////////
-      //promise then
-      .then(function(data) {
-        callback(data);
-      })
-
-      ////////////////////////////
-      //promise catch
-      .catch(function(error) {
-        callback(error);
-      });
 
   }
+
 }
 
 module.exports=new blog();

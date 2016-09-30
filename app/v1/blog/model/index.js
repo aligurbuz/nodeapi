@@ -6,7 +6,7 @@ module.exports = {
       {
         model.sync().then(function()
         {
-          model.findAll().then(function(user)
+          model.findAll({order:'id desc'}).then(function(user)
           {
             callback(user);
           })

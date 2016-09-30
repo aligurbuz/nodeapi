@@ -21,7 +21,7 @@ global.config = require("./config/config");
  * @param {object} req
  * @public config.js
  */
-global.promise = require("promise");
+global.async = require("async");
 
 /**
  * Get base provider for app.
