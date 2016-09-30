@@ -15,26 +15,32 @@ class blog {
   index(callback) {
 
     //set data object
-    var data = new Object();
+    //var data = new Object();
+    var start=new Date();
 
     /////////////////////////////////////
     //async parallel
-    async.parallel([
+    async.parallel({
 
-    function (asyncCall) {
-      //model get user
-      model.user(function(user) {
-        data.result=user;
-        asyncCall(null,data);
+        result : function (asyncCall) {
+          //model get user
+          model.user(function(user) {
+            asyncCall(null,{a:user,rt:new Date()-start});
+          });
 
-      });
-    }
+        },
 
-  ],
+        redis : function (asyncCall) {
+          service.get("redis",function(redis) {
+            asyncCall(null,{a:redis,rt:new Date()-start});
+          },{type:'get',get:'foo'});
+        }
+
+  },
       /////////////////////////////////////
       //async parallel result
       function(err,results) {
-        callback(results);
+        callback({a:new Date()-start,new:results});
       });
 
 
