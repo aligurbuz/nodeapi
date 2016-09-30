@@ -20,18 +20,16 @@ class blog {
     //async parallel
     async.parallel([
 
-      function (asyncCall)
-      {
+      function (asyncCall) {
         //data here
         data.test="test";
         asyncCall(null,data);
       }
+
     ],
       /////////////////////////////////////
       //async parallel result
-      function(err,results)
-      {
-        //result
+      function(err,results) {
         callback(results);
       });
 

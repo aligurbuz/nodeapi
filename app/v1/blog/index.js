@@ -21,8 +21,7 @@ class blog {
     //async parallel
     async.parallel([
 
-    function (asyncCall)
-    {
+    function (asyncCall) {
       //model get user
       model.user(function(user) {
         data.result=user;
@@ -30,10 +29,13 @@ class blog {
 
       });
     }
-  ],function(err,results)
-    {
-      callback(results);
-    });
+
+  ],
+      /////////////////////////////////////
+      //async parallel result
+      function(err,results) {
+        callback(results);
+      });
 
 
   }
@@ -58,18 +60,20 @@ class blog {
     //async parallel
     async.parallel([
 
-      function (asyncCall)
-      {
+      function (asyncCall) {
         //model create
         model.create(function(result) {
           data.postStatus=result;
           asyncCall(null,data);
         });
       }
-    ],function (err,results)
-    {
-      callback(results);
-    });
+
+    ],
+      /////////////////////////////////////
+      //async parallel result
+      function (err,results) {
+        callback(results);
+      });
 
 
   }
