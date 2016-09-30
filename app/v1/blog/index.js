@@ -30,8 +30,6 @@ class blog {
 
       });
     }
-
-
   ],function(err,results)
     {
       callback(results);
@@ -68,7 +66,6 @@ class blog {
           asyncCall(null,data);
         });
       }
-
     ],function (err,results)
     {
       callback(results);

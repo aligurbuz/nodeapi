@@ -13,25 +13,26 @@ class blog {
 
   index(callback) {
 
+    //set data object
+    var data = new Object();
+
     /////////////////////////////////////
-    new Promise(function(resolve,reject) {
+    //async parallel
+    async.parallel([
 
-      //set data object
-      var data = new Object();
-      data.test="test";
-
-    })
-
-      ////////////////////////////
-      //promise then
-      .then(function(data) {
-        callback(data);
-      })
-
-      ///////////////////////////
-      //promise catch
-      .catch(function(error) {
-        callback(error);
+      function (asyncCall)
+      {
+        //data here
+        data.test="test";
+        asyncCall(null,data);
+      }
+    ],
+      /////////////////////////////////////
+      //async parallel result
+      function(err,results)
+      {
+        //result
+        callback(results);
       });
 
   }
