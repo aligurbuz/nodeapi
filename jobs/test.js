@@ -3,6 +3,6 @@ module.exports = {
 
   index: function () {
 
-    return 'blabla 1';
+    return 'blabla 1222';
   }
 };
