@@ -80,7 +80,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 //next blog
 },function (request,response,next)
 {
-
   /**
    * Get global request for app settings.
    *
