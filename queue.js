@@ -67,8 +67,6 @@ for (var i = 1, len =objectcount; i <= len; i += 1) {
 
       var queuefile='qf_'+i;
 
-      var queuevar=queuefile;
-
       var queuefile=require("./jobs/"+filename);
 
       // add some items to the queue
