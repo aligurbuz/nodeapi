@@ -66,7 +66,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.all("/api/service/:name/:method?",function (request,response,next)
+app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
 
   //auth check
@@ -104,6 +104,9 @@ app.all("/api/service/:name/:method?",function (request,response,next)
   //get name
   var name=request.params.name;
 
+  //get project name
+  var project_name=request.params.project;
+
   //get method
   var method=request.params.method;
 
@@ -116,7 +119,7 @@ app.all("/api/service/:name/:method?",function (request,response,next)
   {
 
     //get controller
-    var controller=require("./app/api/v"+config.version+"/"+name+"/index");
+    var controller=require("./app/api/"+project_name+"/v"+config.version+"/"+name+"/index");
 
 
   }
@@ -132,7 +135,7 @@ app.all("/api/service/:name/:method?",function (request,response,next)
     var myfunc=controller.index;
   }
 
-  global.model=require("./app/api/v"+config.version+"/"+name+"/model/index");
+  global.model=require("./app/api/"+project_name+"/v"+config.version+"/"+name+"/model/index");
 
   if(typeof myfunc=="function")
   {
