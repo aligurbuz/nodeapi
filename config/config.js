@@ -7,8 +7,9 @@
 
 var config = module.exports = {
 
-  version   : 1,
-  port      : 3000,
-  env       : 'development'
+  version         : 1,
+  port            : 3000,
+  env             : 'development',
+  template        : 'apperance1'
 
 };

@@ -66,6 +66,25 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+app.all("/:name/:method?",function (request,response,next)
+{
+  //get name
+  var name=request.params.name;
+
+  //get method
+  var name=request.params.name;
+
+  app.set('views', './app/http/views/'+config.template+'/'+name+'');
+  app.set('view engine', 'pug');
+
+  var controllers=require("./app/http/controllers/"+name+"/"+name);
+
+  controllers.index(function(result)
+  {
+    response.render(result.pug, result.data);
+  });
+});
+
 app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
 
