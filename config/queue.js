@@ -7,12 +7,11 @@
 
 var queue = module.exports = {
 
-  limit : 2,
-
   jobs : {
 
     queue1 : {
 
+      status        : true,
       name          : 'newuser',
       time          : 2000,
       datetime      : false, //yy.mm.dd
@@ -25,8 +24,9 @@ var queue = module.exports = {
 
     queue2 : {
 
+      status        : true,
       name          : 'test',
-      time          : 2000,
+      time          : 10000,
       datetime      : false, //yy.mm.dd
       type          : 'second',
       forever       : true

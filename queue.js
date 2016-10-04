@@ -2,21 +2,48 @@
 var async=require("async");
 var queueconf=require("./config/queue");
 
+/**
+ * get path for main directory.
+ *
+ * @param {object} req
+ * @public
+ */
+global.path = require('path');
+global.appDir = path.dirname(require.main.filename);
+
+
+/**
+ * Get config for app settings.
+ *
+ * @param {object} req
+ * @public config.js
+ */
+global.config = require("./config/config");
+
+
+/**
+ * Get base provider for app.
+ *
+ * @param {object} req
+ * @public config.js
+ */
+global.base = require("./provider/base");
+
+/**
+ * Get service provider for app.
+ *
+ * @param {object} req
+ * @public config.js
+ */
+global.service = require("./provider/service");
+
 
 // create a queue object with concurrency 2
 var q = async.queue(function(task, callback) {
 
 
-    setInterval(function()
-    {
-      for (var a=1; a<=queueconf.limit; a++)
-      {
-        console.log('Job : ' + task['qd'+a]+'..done');
-      }
-
-    },2000);
-
-
+  console.log('Job:');
+  callback();
 
 });
 
@@ -28,23 +55,41 @@ q.drain = function() {
 
 var queuedata={};
 
-for (var i=1; i<=queueconf.limit; i++)
-{
+var objectcount=Object.keys(queueconf['jobs']).length;
 
-  var filename=queueconf['jobs']['queue'+i]['name'];
+for (var i = 1, len =objectcount; i <= len; i += 1) {
+  (function(i) {
+    setInterval(function() {
+      var filename=queueconf['jobs']['queue'+i]['name'];
 
-  var qfile='qf_'+i;
+      var qfile='qf_'+i;
 
-  var qfile=require("./jobs/"+filename);
+      var qd=qfile;
 
-  queuedata['qd'+i]=qfile.index();
+      var qfile=require("./jobs/"+filename);
 
+      // add some items to the queue
+      q.push({i: qfile.index()}, function(err) {
+        console.log('finished processing queue'+i);
+      });
 
+    }, queueconf['jobs']['queue'+i]['time'])
+  })(i);
 }
 
-// add some items to the queue
-q.push(queuedata, function(err) {
-  console.log('finished processing foo');
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

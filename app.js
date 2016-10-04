@@ -4,8 +4,8 @@
  * @param {object} req
  * @public
  */
-GLOBAL.path = require('path');
-GLOBAL.appDir = path.dirname(require.main.filename);
+global.path = require('path');
+global.appDir = path.dirname(require.main.filename);
 
 /**
  * Get config for app settings.

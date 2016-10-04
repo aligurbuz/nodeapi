@@ -29,6 +29,10 @@ module.exports = {
       },
       lastName: {
         type: Sequelize.STRING
+      },
+
+      status: {
+        type: Sequelize.INTEGER
       }
     });
 

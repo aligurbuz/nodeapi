@@ -25,14 +25,14 @@ class blog {
         result : function (asyncCall) {
           //model get user
           model.user(function(user) {
-            asyncCall(null,{a:user,rt:new Date()-start});
+            asyncCall(null,user);
           });
 
         },
 
         redis : function (asyncCall) {
           service.get("redis",function(redis) {
-            asyncCall(null,{a:redis,rt:new Date()-start});
+            asyncCall(null,redis);
           },{type:'get',get:'foo'});
         }
 
@@ -40,7 +40,7 @@ class blog {
       /////////////////////////////////////
       //async parallel result
       function(err,results) {
-        callback({a:new Date()-start,new:results});
+        callback(results);
       });
 
 
