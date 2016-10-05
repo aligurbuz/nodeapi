@@ -10,16 +10,15 @@
  * @public
  */
 
-class blog {
+class home {
 
   index(callback) {
 
     //login view
-    callback({view:'blog',data:{}});
-
+    callback({view:'home',data:{}});
   }
 
 
 }
 
-module.exports=new blog();
+module.exports=new home();

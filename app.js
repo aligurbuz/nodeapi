@@ -56,22 +56,37 @@ var express=require("express");
 var app=express();
 
 /**
+ * express route body parser .
+ *
+ * @param {object} req
+ * @public
+ */
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+
+/**
+ * express static public path .
+ *
+ * @param {object} req
+ * @public
+ */
+app.use('/static',express.static(__dirname + '/app/http/public'));
+
+/**
  * express route .
  *
  * @param {object} req
  * @public
  */
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
-app.use('/static',express.static(__dirname + '/app/http/public'));
-
-app.all("/:name/:method?",function (request,response,next)
+app.all("/:name/:method?/:ext?",function (request,response,next)
 {
   //get name
   var name=request.params.name;
+
+  //get name
+  var ext=request.params.ext;
 
   //get method
   if(request.params.method)
@@ -80,43 +95,78 @@ app.all("/:name/:method?",function (request,response,next)
   }
   else
   {
-    var fullUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
-    response.writeHead(302, {
-      'Location': ''+fullUrl+'/login'
-    });
-    response.end();
+    //url admin
+    if(name==config.adminDir)
+    {
+      //redirect login
+      var fullUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
+      response.writeHead(302, {
+        'Location': ''+fullUrl+'/login'
+      });
+      response.end();
+    }
+
+    //get method name
+    var method=request.params.method;
+
   }
 
+  /**
+   * express twig set .
+   *
+   * @param {object} req
+   * @public
+   */
   var Twig = require("twig");
-  // This section is optional and used to configure twig.
-  app.set("twig options", {
-    strict_variables: false
-  });
 
+  // This section is optional and used to configure twig.
+  app.set("twig options", { strict_variables: false });
+
+
+  //url admin
   if(name==config.adminDir)
   {
+    //get config admin dir
     var admin=config.adminDir;
+
+    //normal controller data
     var controllers=require("./app/http/controllers/"+admin+"/"+method+"/"+method);
+
+    //view path set
     app.set('views', './app/http/views/'+config.adminDir+'/'+config.adminTemp+'/'+method+'');
   }
   else
   {
+    //normal url controller data
     var controllers=require("./app/http/controllers/"+name+"/"+name);
+
+    //view path set
     app.set('views', './app/http/views/'+config.template+'/'+name+'');
   }
 
+  //view engine
   app.set('view engine', 'twig');
 
 
-
+  //return controllers callback
   controllers.index(function(result)
   {
+    //static data passing for view
     var static = request.protocol + '://' + request.get('host')+'/static';
 
+    //response
     response.render(result.view,{base:{static:static},data:result.data});
   });
 });
 
+
+
+/**
+ * express api url set .
+ *
+ * @param {object} req
+ * @public
+ */
 app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
 
@@ -185,6 +235,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     var myfunc=controller.index;
   }
 
+  //set global model
   global.model=require("./app/api/"+project_name+"/v"+config.version+"/"+name+"/model/index");
 
   if(typeof myfunc=="function")
@@ -193,14 +244,17 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     {
       if(typeof data!=="object")
       {
+        //res.json
         res.json({"success":false,"message":"data is not object"});
       }
 
+      //res.json
       res.json({success:true,data:data});
     });
   }
   else
   {
+    //res.json
     res.json({"success":false,"message":"no access"});
   }
 

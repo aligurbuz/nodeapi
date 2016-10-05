@@ -14,30 +14,8 @@ class login {
 
   index(callback) {
 
-    /////////////////////////////////////
-    //async parallel
-    async.parallel({
-
-        title : function (asyncCall) {
-
-          asyncCall(null,"hey");
-
-        },
-
-        message : function (asyncCall) {
-
-          asyncCall(null,"oww!! Welcome");
-
-        }
-
-      },
-      /////////////////////////////////////
-      //async parallel result
-      function(err,results) {
-        callback({view:'login',data:results});
-      });
-
-
+    //login view
+    callback({view:'login',data:{}});
   }
 
 
