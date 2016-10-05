@@ -66,22 +66,54 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+app.use('/static',express.static(__dirname + '/app/http/public'));
+
 app.all("/:name/:method?",function (request,response,next)
 {
   //get name
   var name=request.params.name;
 
   //get method
-  var name=request.params.name;
+  if(request.params.method)
+  {
+    var method=request.params.method;
+  }
+  else
+  {
+    var fullUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
+    response.writeHead(302, {
+      'Location': ''+fullUrl+'/login'
+    });
+    response.end();
+  }
 
-  app.set('views', './app/http/views/'+config.template+'/'+name+'');
-  app.set('view engine', 'pug');
+  var Twig = require("twig");
+  // This section is optional and used to configure twig.
+  app.set("twig options", {
+    strict_variables: false
+  });
 
-  var controllers=require("./app/http/controllers/"+name+"/"+name);
+  if(name==config.adminDir)
+  {
+    var admin=config.adminDir;
+    var controllers=require("./app/http/controllers/"+admin+"/"+method+"/"+method);
+    app.set('views', './app/http/views/'+config.adminDir+'/'+config.adminTemp+'/'+method+'');
+  }
+  else
+  {
+    var controllers=require("./app/http/controllers/"+name+"/"+name);
+    app.set('views', './app/http/views/'+config.template+'/'+name+'');
+  }
+
+  app.set('view engine', 'twig');
+
+
 
   controllers.index(function(result)
   {
-    response.render(result.pug, result.data);
+    var static = request.protocol + '://' + request.get('host')+'/static';
+
+    response.render(result.view,{base:{static:static},data:result.data});
   });
 });
 

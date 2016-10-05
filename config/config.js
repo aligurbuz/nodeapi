@@ -10,6 +10,8 @@ var config = module.exports = {
   version         : 1,
   port            : 3000,
   env             : 'development',
-  template        : 'apperance1'
+  template        : 'apperance1',
+  adminDir        : 'admin',
+  adminTemp       : 'elite'
 
 };
