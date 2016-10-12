@@ -233,8 +233,21 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   else
   {
 
+    var undersplit=name.split("_");
+
+    if(undersplit.hasOwnProperty("1"))
+    {
+      var fileindex=undersplit[1];
+      var dir=undersplit[0];
+    }
+    else
+    {
+      var fileindex='index';
+      var dir=name;
+    }
+
     //get controller
-    var controller=require("./app/api/"+project_name+"/v"+config.version+"/"+name+"/index");
+    var controller=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/"+fileindex);
 
 
   }
@@ -251,7 +264,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   }
 
   //set global model
-  global.model=require("./app/api/"+project_name+"/v"+config.version+"/"+name+"/model/index");
+  global.model=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/model/index");
 
   if(typeof myfunc=="function")
   {
