@@ -14,10 +14,6 @@ class blog {
 
   index(callback) {
 
-    //set data object
-    //var data = new Object();
-    var start=new Date();
-
     /////////////////////////////////////
     //async parallel
     async.parallel({
