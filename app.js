@@ -177,6 +177,7 @@ app.use(function(req,res,next){
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,x');
   next();
 });
+
 app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
 
@@ -196,6 +197,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 //next blog
 },function (request,response,next)
 {
+
   /**
    * Get global request for app settings.
    *
@@ -246,9 +248,23 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       var dir=name;
     }
 
-    //get controller
-    var controller=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/"+fileindex);
+    //check file exists
+    var apifileexists="./app/api/"+project_name+"/v"+config.version+"/"+dir+"/"+fileindex+".js";
 
+    //get file exists control
+    var fileExists = require('file-exists');
+
+    //true or false
+    if(fileExists(apifileexists))
+    {
+      //get controller
+      var controller=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/"+fileindex);
+    }
+    else
+    {
+      //res.json
+      res.json({"success":false,"message":"Invalid Service"});
+    }
 
   }
 
