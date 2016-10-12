@@ -11,7 +11,3 @@ var cli = new Cli({
 cli.on("create", function(){
   console.log(this.argv);
 });
-
-cli.on("test", function(){
-  console.log("test");
-});
