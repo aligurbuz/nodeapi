@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env '+this.argv['dir']+'
 
 "use strict";
 
@@ -17,7 +17,13 @@ cli.on("create", function(){
   fs = require('fs');
   for (var i in this.argv)
   {
-    if(i!=="_" && i!=="notNull")
+    if(this['argv'].hasOwnProperty('version')==false)
+    {
+      console.log('error : you have to identify a directory name');
+      return;
+    }
+
+    if(i!=="_" && i!=="notNull" && i!=="dir")
     {
       var fs = require('fs');
 
@@ -37,17 +43,17 @@ cli.on("create", function(){
       if(i!=="version")
       {
         try {
-          fs.statSync('./app/api/node/'+version+'/'+i+'');
+          fs.statSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'');
         } catch(e) {
-          fs.mkdirSync('./app/api/node/'+version+'/'+i+'');
-          fs.mkdirSync('./app/api/node/'+version+'/'+i+'/model');
+          fs.mkdirSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'');
+          fs.mkdirSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/model');
 
-          fs.writeFile('./app/api/node/'+version+'/'+i+'/model/index.js','module.exports = { user : function (callback) {    } };', function (err) {
+          fs.writeFile('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/model/index.js','module.exports = { user : function (callback) {    } };', function (err) {
             if (err) return console.log(err);
           });
         }
 
-        var file='./app/api/node/'+version+'/'+i+'/'+this.argv[i]+'.js';
+        var file='./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/'+this.argv[i]+'.js';
         var namespace=this.argv[i];
       }
 
