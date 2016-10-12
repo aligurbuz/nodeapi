@@ -8,7 +8,7 @@ var cli = new Cli({
   handleUncaughtException : true
 });
 
-cli.on("api", function(){
+cli.on("create", function(){
   console.log(this.argv);
 });
 
