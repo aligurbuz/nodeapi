@@ -7,6 +7,7 @@ var query=function () {
   this.slct                   =null;
   this.ofst                   =null;
   this.exc                    =null;
+  this.order                  =null;
 };
 
 query.prototype.table=function(name){
@@ -51,6 +52,14 @@ query.prototype.offset=function(ofst){
 };
 
 
+query.prototype.orderBy=function(order){
+
+  this.order=order;
+  return this;
+
+};
+
+
 query.prototype.get=function(callback)
 {
   var obj={};
@@ -67,6 +76,11 @@ query.prototype.get=function(callback)
   if(this.ofst!==null)
   {
     obj.offset=this.ofst;
+  }
+
+  if(this.order!==null)
+  {
+    obj.order=this.order;
   }
 
   if(this.slct!==null)

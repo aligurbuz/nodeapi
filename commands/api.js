@@ -17,7 +17,7 @@ cli.on("create", function(){
   fs = require('fs');
   for (var i in this.argv)
   {
-    if(this['argv'].hasOwnProperty('version')==false)
+    if(this['argv'].hasOwnProperty('dir')==false)
     {
       console.log('error : you have to identify a directory name');
       return;
