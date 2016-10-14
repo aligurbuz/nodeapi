@@ -2,41 +2,23 @@
 module.exports = {
   user: function (callback) {
 
-      service.model("user",function(model)
-      {
-        model.sync().then(function()
-        {
-          model.findAll({order:'id desc',limit:1}).then(function(user)
-          {
-            callback(user);
-          })
-        });
-
-      });
+    query.table("admin").limit(10).get(function(result)
+    {
+      callback(result);
+    });
   },
 
   create : function (callback)
   {
-    service.model("user",function(model)
+    var postdata ={
+
+      firstName           :"yasin",
+      lastName            :"gurbuz"
+    };
+
+    query.table("user").insert(postdata,function(result)
     {
-      model.sync().then(function()
-      {
-        model.create(
-          {
-            firstName:req.body.firstName,
-            lastName:req.body.lastName
-          }
-        ).then(function(result)
-          {
-            callback(result);
-          }).
-          catch(function(error)
-          {
-            callback({error:error.errors});
-          });
-      });
-
+      callback(result);
     });
-
   }
 };

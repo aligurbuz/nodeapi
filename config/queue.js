@@ -13,20 +13,7 @@ var queue = module.exports = {
 
       status        : true,
       name          : 'newuser',
-      time          : 2000,
-      datetime      : false, //yy.mm.dd
-      type          : 'second',
-      forever       : true
-
-    }
-
-    ,
-
-    queue2 : {
-
-      status        : true,
-      name          : 'test',
-      time          : 10000,
+      time          : 1000,
       datetime      : false, //yy.mm.dd
       type          : 'second',
       forever       : true

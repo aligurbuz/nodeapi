@@ -5,7 +5,7 @@ module.exports = {
 
   index: function () {
 
-    service.model("user",function(model)
+    service.model("admin",function(model)
     {
       model.sync().then(function()
       {
@@ -15,8 +15,7 @@ module.exports = {
 
           model.create(
             {
-              firstName:user[0].id,
-              lastName:"blod"
+              username:user[0].id
             }
           ).then(function(result)
             {

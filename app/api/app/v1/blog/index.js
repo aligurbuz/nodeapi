@@ -16,7 +16,13 @@ class index {
     //set data object
     var data = new Object();
     data.test="hello world";
-    callback(data);
+
+    query.table("admin").limit(10).offset(0).get(function(result)
+    {
+      data.result=result;
+      callback(data);
+    });
+
 
   }
 

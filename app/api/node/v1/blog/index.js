@@ -14,6 +14,8 @@ class blog {
 
   index(callback) {
 
+    var chaining=require(""+appDir+"/test/chaining");
+
     /////////////////////////////////////
     //async parallel
     async.parallel({
@@ -57,6 +59,7 @@ class blog {
 
     //set data object
     var data = new Object();
+
 
     /////////////////////////////////////
     //async parallel

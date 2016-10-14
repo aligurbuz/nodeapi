@@ -40,6 +40,14 @@ global.base = require("./provider/base");
 global.service = require("./provider/service");
 
 /**
+ * Get service query database for app.
+ *
+ * @param {object} req
+ * @public config.js
+ */
+global.query=require("./packages/seqmod/main");
+
+/**
  * Start express project.
  *
  * @param {object} req

@@ -22,8 +22,11 @@ module.exports = {
   {
     if(model!==null)
     {
+      //sequelize modul
+      var Sequelize=require("sequelize");
+
       var modelname=require(""+appDir+"/model/"+model);
-      callback(modelname.get());
+      callback(modelname.get(Sequelize),Sequelize);
     }
   }
 };
