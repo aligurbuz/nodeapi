@@ -19,10 +19,11 @@
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
-    "n-cli": "^1.0.8"
+    "n-cli": "^1.0.8",
+    "pm2": "^2.0.18"
   },
   "scripts": {
-    "test": "nodeapi"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
