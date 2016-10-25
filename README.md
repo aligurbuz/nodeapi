@@ -9,6 +9,9 @@ node commands/api create --dir app --ghost index
 
 node commands/api create --dir app --ghost example
 
+# creating db model
+node commands/model create --model user
+
 # call api service with browser
 http://ip:3000/api/app/ghost/?_token=testuser
 
