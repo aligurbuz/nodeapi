@@ -13,7 +13,7 @@ module.exports = {
       dialect: database.dialect,
 
       pool: {
-        max: 5,
+        max: 50,
         min: 0,
         idle: 10000
       }

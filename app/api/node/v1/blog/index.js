@@ -14,8 +14,7 @@ class blog {
 
   index(callback) {
 
-    var chaining=require(""+appDir+"/test/chaining");
-
+    var start = new Date().getTime();
     /////////////////////////////////////
     //async parallel
     async.parallel({
@@ -23,14 +22,14 @@ class blog {
         result : function (asyncCall) {
           //model get user
           model.user(function(user) {
-            asyncCall(null,user);
+            asyncCall(null,{time : new Date().getTime()-start,call:user});
           });
 
         },
 
         redis : function (asyncCall) {
           service.get("redis",function(redis) {
-            asyncCall(null,redis);
+            asyncCall(null,{time : new Date().getTime()-start,call:redis});
           },{type:'get',get:'foo'});
         }
 
@@ -38,8 +37,10 @@ class blog {
       /////////////////////////////////////
       //async parallel result
       function(err,results) {
-        callback(results);
+        callback({time : new Date().getTime()-start,call:results});
       });
+
+
 
 
   }
