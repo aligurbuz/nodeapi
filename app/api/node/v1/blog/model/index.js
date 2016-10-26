@@ -2,14 +2,15 @@
 module.exports = {
   user: function (callback) {
 
-    query.table("admin").limit(10).get(function(result)
+    query.table("user").leftJoin({model:'task'}).get(function(result)
     {
       callback(result);
-    });
+    })
+
   },
 
-  create : function (callback)
-  {
+  create : function (callback) {
+
     var postdata ={
 
       firstName           :"yasin",
@@ -20,5 +21,6 @@ module.exports = {
     {
       callback(result);
     });
+
   }
 };

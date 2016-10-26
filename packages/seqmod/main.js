@@ -8,6 +8,7 @@ var query=function () {
   this.ofst                   =null;
   this.exc                    =null;
   this.order                  =null;
+  this.inc                    =null;
 };
 
 query.prototype.table=function(name){
@@ -59,6 +60,13 @@ query.prototype.orderBy=function(order){
 
 };
 
+query.prototype.leftJoin=function(inc){
+
+  this.inc=inc;
+  return this;
+
+};
+
 
 query.prototype.get=function(callback)
 {
@@ -66,6 +74,11 @@ query.prototype.get=function(callback)
   if(this.wh!==null)
   {
     obj.where=this.wh;
+  }
+
+  if(this.inc!==null)
+  {
+    obj.include=[{model:service.model(this['inc']['model']),attributes:this['inc']['select']}];
   }
 
   if(this.lmt!==null)
