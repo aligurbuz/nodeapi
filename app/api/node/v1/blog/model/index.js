@@ -10,7 +10,7 @@ module.exports = {
   user: function (callback) {
 
     //query builder for sequelize --select model
-    //select() or where() orderby() offset() groupBy()
+    //select(['id','username']) or where({id:1}) orderby({id:desc}) offset(page,limit) groupBy()
     query.table("user").join({model:['task']}).get(function(result) {
       callback(result);
     })
