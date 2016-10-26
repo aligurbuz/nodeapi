@@ -27,8 +27,8 @@ module.exports = {
 
     //postdata
     var postdata ={
-      firstName           :"yasin",
-      lastName            :"gurbuz"
+      firstName           :"spartan",
+      lastName            :"troyya"
     };
 
     //query builder for sequelize --insert model
