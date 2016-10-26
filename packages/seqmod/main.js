@@ -9,6 +9,7 @@ var query=function () {
   this.exc                    =null;
   this.order                  =null;
   this.inc                    =null;
+  this.incType                ="left";
 };
 
 query.prototype.table=function(name){
@@ -60,9 +61,10 @@ query.prototype.orderBy=function(order){
 
 };
 
-query.prototype.leftJoin=function(inc){
+query.prototype.join=function(inc,type){
 
   this.inc=inc;
+  this.incType=type;
   return this;
 
 };
@@ -78,7 +80,17 @@ query.prototype.get=function(callback)
 
   if(this.inc!==null)
   {
-    obj.include=[{model:service.model(this['inc']['model']),attributes:this['inc']['select']}];
+    if(this.incType=="left")
+    {
+      var jointype=false;
+    }
+
+    if(this.incType=="inner")
+    {
+      var jointype=true;
+    }
+
+    obj.include=[{model:service.model(this['inc']['model']),attributes:this['inc']['select'],required:jointype}];
   }
 
   if(this.lmt!==null)

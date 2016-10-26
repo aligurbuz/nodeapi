@@ -2,7 +2,7 @@
 module.exports = {
   user: function (callback) {
 
-    query.table("user").leftJoin({model:'task'}).get(function(result)
+    query.table("user").join({model:['task']}).get(function(result)
     {
       callback(result);
     })

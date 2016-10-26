@@ -2,13 +2,10 @@
 //redis function
 module.exports = {
 
-  get: function () {
+  get: function (Sequelize) {
 
     //configuration database
     var database=require(""+appDir+"/config/database");
-
-    //sequelize modul
-    var Sequelize=require("sequelize");
 
     //set connection
     var connection = new Sequelize(database.database,database.user,database.password, {
@@ -16,30 +13,23 @@ module.exports = {
       dialect: database.dialect,
 
       pool: {
-        max: 5,
+        max: 50,
         min: 0,
         idle: 10000
       }
     });
 
     //table definition
-    var User = connection.define('user', {
-      firstName: {
+    var comment = connection.define('comment', {
+      cname: {
         type: Sequelize.STRING
       },
-      lastName: {
-        type: Sequelize.STRING
-      },
-
-      status: {
+      userId: {
         type: Sequelize.INTEGER
       }
     });
 
-    User.hasMany(service.model("task"));
-    User.hasMany(service.model("comment"));
-
-    return User;
+    return comment;
 
 
   }
