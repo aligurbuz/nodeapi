@@ -22,7 +22,8 @@
   "devDependencies": {
     "debug-log": "^1.0.1",
     "n-cli": "^1.0.8",
-    "pm2": "^2.0.18"
+    "pm2": "^2.0.18",
+    "sequelize-cli": "^2.4.0"
   },
   "scripts": {
     "start": "node app.js"
