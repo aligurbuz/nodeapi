@@ -26,8 +26,7 @@
     "sequelize-cli": "^2.4.0"
   },
   "scripts": {
-    "start": "pm2 start app.js",
-      "close" : "pm2 stop app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
