@@ -10,7 +10,7 @@ module.exports = {
   user: function (callback) {
 
     //query builder for sequelize --select model
-    query.table("user").get(function(result) {
+    query.table("user").join({model:['task']}).get(function(result) {
       callback(result);
     })
 
