@@ -34,6 +34,15 @@ module.exports = {
       status: {
         type: Sequelize.INTEGER
       }
+    },{
+
+      scopes : {
+        activeUser : {
+          where : {
+            status : 1
+          }
+        }
+      }
     });
 
     User.hasMany(service.model("task"));

@@ -8,8 +8,15 @@ var query=function () {
   this.ofst                   =null;
   this.exc                    =null;
   this.order                  =null;
+  this.grp                    =null;
   this.inc                    =null;
   this.incType                ="left";
+  this.scp                    =null;
+};
+
+query.prototype.scope=function(scp){
+  this.scp=scp;
+  return this;
 };
 
 query.prototype.table=function(name){
@@ -61,6 +68,13 @@ query.prototype.orderBy=function(order){
 
 };
 
+query.prototype.group=function(grp){
+
+  this.grp=grp;
+  return this;
+
+};
+
 query.prototype.join=function(inc,type){
 
   this.inc=inc;
@@ -108,6 +122,11 @@ query.prototype.get=function(callback)
     obj.order=this.order;
   }
 
+  if(this.grp!==null)
+  {
+    obj.group=this.grp;
+  }
+
   if(this.slct!==null)
   {
     obj.attributes=this.slct;
@@ -118,13 +137,19 @@ query.prototype.get=function(callback)
     obj.attributes={exclude : this.exc };
   }
 
+  if(this.scp!==null)
+  {
+    var scp=this.scp;
+  }
+
+
   if(this.name!==null)
   {
     service.model(this.name,function(model,seq)
     {
       model.sync().then(function()
       {
-        model.findAndCountAll(obj).then(function(admin)
+        model.scope(scp).findAll(obj).then(function(admin)
         {
           callback(admin);
         })
@@ -167,6 +192,7 @@ query.prototype.insert=function(post,callback){
 
   });
 };
+
 
 
 
