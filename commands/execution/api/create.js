@@ -1,5 +1,5 @@
 /**
- * Function blog method ; index
+ * Function api method ; index
  * Examples:
  *
  *     // Accept: application/json
@@ -11,15 +11,30 @@
  */
 class blogExampleServiceName {
 
+  //main method
   index(callback) {
 
-    //set data object
+    /*
+     Add altering object here.
+     Return a promise to correctly handle asynchronicity.
+
+     Example:
+     return callback({test:'hello world'});
+     */
+
+    //set new object
     var data = new Object();
-    data.test="hello world";
+
+    //set example object
+    data.result="hello world";
+
+    //return callback
     callback(data);
+
 
   }
 
 }
 
+//module exports class object
 module.exports=new blogExampleServiceName();
