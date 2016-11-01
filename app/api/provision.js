@@ -47,7 +47,7 @@ class provision {
      * Examples:
      *
      *     // object
-     *     //{projectName_ApiDirectory_File_Method}
+     *     //[projectName_ApiDirectory_File_Method]
      *
      * @param {String|Array} types...
      * @return {json}
