@@ -18,7 +18,7 @@ class provision {
   get(callback) {
 
     /**
-     * general provision method
+     * general provision get method
      * Function provision method ; api service
      * call api service project dir fileindex method
      * Examples:
@@ -33,7 +33,7 @@ class provision {
      * @return {json}
      * @return
      */
-    callback({success:true,message:'not provision main'});
+    callback({success:true,message:'not provision get'});
 
   }
 
@@ -42,6 +42,49 @@ class provision {
 
     /**
      * general provision method except for get
+     * Function provision method ; api service
+     * it is run get method for services except specified names
+     * Examples:
+     *
+     *     // object
+     *     //[projectName_ApiDirectory_File_Method]
+     *
+     * @param {String|Array} types...
+     * @return {json}
+     * @return
+     */
+    callback([]);
+
+  }
+
+
+  post(callback) {
+
+    /**
+     * general provision post method
+     * Function provision method ; api service
+     * call api service project dir fileindex method
+     * Examples:
+     *
+     *     // success :false
+     *     //message : obligatory key
+     *
+     *     //success : true
+     *     //message : no need
+     *
+     * @param {String|Array} types...
+     * @return {json}
+     * @return
+     */
+    callback({success:true,message:'not provision post'});
+
+  }
+
+
+  exceptForPost(callback) {
+
+    /**
+     * general provision method except for post
      * Function provision method ; api service
      * it is run get method for services except specified names
      * Examples:

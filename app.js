@@ -207,6 +207,22 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
 
   /**
+   * service request type.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+    if(request.method=="GET")
+    {
+      var requestMethod="get";
+    }
+    else
+    {
+      var requestMethod='post';
+    }
+
+
+  /**
    * Get global request for app settings.
    *
    * @param {object} req
@@ -309,7 +325,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
 
       //get call provision main
-      var callProvisionMethodMain=provision.get;
+      var callProvisionMethodMain=provision[requestMethod];
 
       //get call provision
       var provisionMethodHasOwnProperty=false;
@@ -359,7 +375,16 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
         {
           var in_array=require("in_array");
 
-          provision.exceptForGet(function(except)
+          if(requestMethod=="get") {
+
+            var exceptFor=provision.exceptForGet;
+          }
+          else {
+
+            var exceptFor=provision.exceptForPost;
+          }
+
+          exceptFor(function(except)
           {
             if(in_array(provision_method,except))
             {
