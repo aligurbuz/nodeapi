@@ -280,11 +280,13 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   {
     //get method if it is true
     var myfunc=controller[method];
+    var apimethod=method;
   }
   else
   {
     //get method if it is false
     var myfunc=controller.index;
+    var apimethod='index';
   }
 
   //set global model
@@ -300,8 +302,69 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
         res.json({"success":false,"message":"data is not object"});
       }
 
-      //res.json
-      res.json({success:true,data:data});
+      //get provision
+      var provision=require("./app/api/provision");
+
+      //get provision method
+      var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
+
+      //get call provision main
+      var callProvisionMethodMain=provision.main;
+
+      //get call provision
+      var provisionMethodHasOwnProperty=false;
+
+      //get has check
+      if(typeof provision[provision_method]=="function")
+      {
+        var callProvisionMethod=provision[provision_method];
+        var provisionMethodHasOwnProperty=true;
+      }
+
+
+      //get callback provision
+      callProvisionMethodMain(function(provision_result)
+      {
+        //success true
+        if(provision_result.success)
+        {
+          if(provisionMethodHasOwnProperty)
+          {
+            //get callback provision
+            callProvisionMethod(function(provision_result)
+            {
+              //success true
+              if(provision_result.success)
+              {
+                //res.json
+                res.json({success:true,data:data});
+              }
+              else
+              {
+                //success false
+                res.json({"success":false,"message":provision_result.message});
+              }
+            });
+          }
+          else
+          {
+            //res.json
+            res.json({success:true,data:data});
+          }
+
+
+        }
+        else
+        {
+          //success false
+          res.json({"success":false,"message":provision_result.message});
+        }
+      });
+
+
+
+
+
     });
   }
   else
