@@ -38,6 +38,26 @@ class provision {
   }
 
 
+  exceptForGet(callback) {
+
+    /**
+     * general provision method except for get
+     * Function provision method ; api service
+     * it is run get method for services except specified names
+     * Examples:
+     *
+     *     // object
+     *     //{projectName_ApiDirectory_File_Method}
+     *
+     * @param {String|Array} types...
+     * @return {json}
+     * @return
+     */
+    callback([]);
+
+  }
+
+
 }
 
 //module exports provision

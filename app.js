@@ -325,6 +325,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       //get callback provision
       callProvisionMethodMain(function(provision_result)
       {
+
         //success true
         if(provision_result.success)
         {
@@ -356,8 +357,24 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
         }
         else
         {
-          //success false
-          res.json({"success":false,"message":provision_result.message});
+          var in_array=require("in_array");
+
+          provision.exceptForGet(function(except)
+          {
+            if(in_array(provision_method,except))
+            {
+              //res.json
+              res.json({success:true,data:data});
+            }
+            else
+            {
+              //success false
+              res.json({"success":false,"message":provision_result.message});
+            }
+
+          });
+
+
         }
       });
 
