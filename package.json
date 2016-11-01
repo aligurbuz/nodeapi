@@ -19,6 +19,7 @@
     "sequelize": "^3.24.3",
     "sequelize-transactions": "^1.0.1",
     "socket.io": "^1.4.8",
+    "twig": "^0.10.0",
     "useragent": "^2.1.9",
     "yamlparser": "0.0.2"
   },
