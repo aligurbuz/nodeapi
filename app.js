@@ -309,7 +309,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
 
       //get call provision main
-      var callProvisionMethodMain=provision.main;
+      var callProvisionMethodMain=provision.get;
 
       //get call provision
       var provisionMethodHasOwnProperty=false;

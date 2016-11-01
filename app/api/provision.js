@@ -15,7 +15,7 @@
 
 class provision {
 
-  main(callback) {
+  get(callback) {
 
     /**
      * general provision method
