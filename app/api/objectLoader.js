@@ -16,7 +16,7 @@
 
 class objectLoader {
 
-  get(callback) {
+  get(callback,data) {
 
     /**
      * general object loader get method
@@ -37,7 +37,7 @@ class objectLoader {
   }
 
 
-  exceptForGet(callback) {
+  exceptForGet(callback,data) {
 
     /**
      * general object loader method except for get
@@ -57,7 +57,7 @@ class objectLoader {
   }
 
 
-  post(callback) {
+  post(callback,data) {
 
     /**
      * general object loader post method
@@ -78,7 +78,7 @@ class objectLoader {
   }
 
 
-  exceptForPost(callback) {
+  exceptForPost(callback,data) {
 
     /**
      * general object loader method except for post

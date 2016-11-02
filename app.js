@@ -449,7 +449,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
           }
 
-        })
+        },data)
       }
 
       //res.json
