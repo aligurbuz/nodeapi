@@ -45,5 +45,32 @@ module.exports = {
     */
     return tokens;
 
+  },
+
+  /**
+   * access without token for services
+   * Function base module ; api not token service
+   * get client token for your services
+   * Examples:
+   *
+   *     // base.accessWithoutToken()
+   *     //return : client without token array
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+
+  accessWithoutToken: function () {
+
+    /**
+     * tokens for all services
+     * provision method
+     * projectName_Directory_File_Method
+     * @type : array
+    */
+    return [];
+
   }
 };

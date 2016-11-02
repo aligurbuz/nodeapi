@@ -97,7 +97,6 @@ class objectLoader {
 
   }
 
-
 }
 
 //module exports provision
