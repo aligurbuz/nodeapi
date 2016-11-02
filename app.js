@@ -32,30 +32,6 @@ global.config = require("./config/config");
 global.async = require("async");
 
 /**
- * Get base provider for app.
- *
- * @param {object} req
- * @public config.js
- */
-global.base = require("./provider/base");
-
-/**
- * Get service provider for app.
- *
- * @param {object} req
- * @public config.js
- */
-global.service = require("./provider/service");
-
-/**
- * Get service query database for app.
- *
- * @param {object} req
- * @public config.js
- */
-global.query=require("./packages/seqmod/main");
-
-/**
  * Start express project.
  *
  * @param {object} req
@@ -98,6 +74,30 @@ app.use('/static',express.static(__dirname + '/app/http/public'));
  */
 app.all("/:name/:method?/:ext?",function (request,response,next)
 {
+  /**
+   * Get base provider for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.base = require("./provider/base");
+
+  /**
+   * Get service provider for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.service = require("./provider/service");
+
+  /**
+   * Get service query database for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.query=require("./packages/seqmod/main");
+
   //get name
   var name=request.params.name;
 
@@ -254,10 +254,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
    */
   global.res=response;
 
-  //json authorize true
-  response.setHeader('Content-Type', 'application/json');
-  //buydu sildin
-
   //get name
   var name=request.params.name;
 
@@ -266,6 +262,30 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
   //get method
   var method=request.params.method;
+
+  /**
+   * Get base provider for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.base = require("./provider/api/base");
+
+  /**
+   * Get service provider for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.service = require("./provider/api/service");
+
+  /**
+   * Get service query database for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.query=require("./packages/seqmod/main");
 
   if(name==="test")
   {
@@ -380,6 +400,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     if(!provisionObject.success) {
 
       //res.json
+      //json authorize true
+      response.setHeader('Content-Type', 'application/json');
       res.json({success:false,message:provisionObject.message});
       return;
     }
@@ -399,6 +421,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     else
     {
       //res.json
+      //json authorize true
+      response.setHeader('Content-Type', 'application/json');
       res.json({success:false,message:"Invalid Service"});
     }
 
@@ -461,6 +485,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       }
 
       //res.json
+      //json authorize true
+      response.setHeader('Content-Type', 'application/json');
       res.json({success:true,data:data});
 
     });
@@ -468,6 +494,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   else
   {
     //res.json
+    //json authorize true
+    response.setHeader('Content-Type', 'application/json');
     res.json({"success":false,"message":"no access"});
   }
 
