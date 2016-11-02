@@ -11,6 +11,7 @@
     "file-exists": "^2.0.0",
     "graceful-fs": "^4.1.6",
     "in_array": "^1.1.0",
+    "md5": "^2.2.1",
     "mysql": "^2.11.1",
     "promise": "^7.1.1",
     "pug": "^2.0.0-beta6",

@@ -220,6 +220,14 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
    * @param {object} req
    * @public config.js
    */
+   var version=config['api']['version'];
+
+  /**
+   * service request type.
+   *
+   * @param {object} req
+   * @public config.js
+   */
     if(request.method=="GET")
     {
       var requestMethod="get";
@@ -377,7 +385,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     }
 
     //check file exists
-    var apifileexists="./app/api/"+project_name+"/v"+config.version+"/"+dir+"/"+fileindex+".js";
+    var apifileexists="./app/api/"+project_name+"/v"+version+"/"+dir+"/"+fileindex+".js";
 
     //get file exists control
     var fileExists = require('file-exists');
@@ -386,7 +394,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     if(fileExists(apifileexists))
     {
       //get controller
-      var controller=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/"+fileindex);
+      var controller=require("./app/api/"+project_name+"/v"+version+"/"+dir+"/"+fileindex);
     }
     else
     {
@@ -410,7 +418,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
 
   //set global model
-  global.model=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/model/index");
+  global.model=require("./app/api/"+project_name+"/v"+version+"/"+dir+"/model/index");
 
   if(typeof myfunc=="function")
   {
@@ -423,7 +431,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       }
 
       //object loader run
-      if(config.objectLoader)
+      if(config['api']['objectLoader'])
       {
         var objectLoader=require("./app/api/objectLoader");
         objectLoader[requestMethod](function(object) {

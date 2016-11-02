@@ -1,5 +1,5 @@
 /**
- * get config arrays
+ * get database arrays
  *
  * @param {object} req
  * @public config.js

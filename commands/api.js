@@ -36,7 +36,7 @@ cli.on("create", function(){
         var path=appDir.replace('/commands','');
 
         var config=require(""+path+"/config/config");
-        var version='v'+config.version;
+        var version='v'+config['api']['version'];
       }
 
 
