@@ -4,6 +4,14 @@
  * @param {object} req
  * @public
  */
+var in_array=require("in_array");
+
+/**
+ * get path for main directory.
+ *
+ * @param {object} req
+ * @public
+ */
 global.path = require('path');
 global.appDir = path.dirname(require.main.filename);
 
@@ -305,6 +313,18 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     var apimethod='index';
   }
 
+  //get provision method
+  var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
+
+  if(requestMethod=="get") {
+
+    var exceptFor='exceptForGet';
+  }
+  else {
+
+    var exceptFor='exceptForPost';
+  }
+
   //set global model
   global.model=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/model/index");
 
@@ -312,6 +332,37 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   {
     myfunc(function (data)
     {
+      //object loader run
+      if(config.objectLoader)
+      {
+        var objectLoader=require("./app/api/objectLoader");
+        objectLoader[requestMethod](function(object) {
+
+          if(typeof object=="object") {
+            objectLoader[exceptFor](function(except)
+            {
+              if(!in_array(provision_method,except))
+              {
+                data=base.merge(object,data);
+              }
+
+              if(typeof objectLoader[provision_method]=="function") {
+
+                objectLoader[provision_method](function(special)
+                {
+                  data=base.merge(special,data);
+                })
+
+              }
+
+            })
+
+          }
+
+        })
+      }
+
+
       if(typeof data!=="object")
       {
         //res.json
@@ -320,9 +371,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
       //get provision
       var provision=require("./app/api/provision");
-
-      //get provision method
-      var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
 
       //get call provision main
       var callProvisionMethodMain=provision[requestMethod];
@@ -373,7 +421,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
         }
         else
         {
-          var in_array=require("in_array");
 
           if(requestMethod=="get") {
 

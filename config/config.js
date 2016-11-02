@@ -12,6 +12,7 @@ var config = module.exports = {
   env             : 'development',
   template        : 'apperance1',
   adminDir        : 'admin',
-  adminTemp       : 'elite'
+  adminTemp       : 'elite',
+  objectLoader    : false
 
 };

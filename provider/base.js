@@ -93,5 +93,27 @@ module.exports = {
 
     //agent
     return agent;
+  },
+
+  /**
+   * merge two different object keys for all services
+   * Function base module ; api merge service for objects
+   * get client merge information for your services
+   * Examples:
+   *
+   *     // base.merge(obj1,obj2)
+   *     //return : client device information
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+  merge :function (obj1,obj2)
+  {
+    var obj3 = {};
+    for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
+    for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
+    return obj3;
   }
 };
