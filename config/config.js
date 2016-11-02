@@ -94,6 +94,7 @@ var config = module.exports = {
      *
      *     //that is load automatically modules for all api services
      *     and means automatically module loads
+     *     that is in app/api
      *
      */
     auto_module_list    : ['md5'],
