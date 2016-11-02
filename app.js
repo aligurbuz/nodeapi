@@ -277,7 +277,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
    * @param {object} req
    * @public config.js
    */
-  global.service = require("./provider/api/service");
+  global.service = require("./provider/service");
 
   /**
    * Get service query database for app.
