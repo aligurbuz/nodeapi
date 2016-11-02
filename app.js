@@ -280,6 +280,102 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       var dir=name;
     }
 
+    if(method)
+    {
+      //get method if it is true
+      var apimethod=method;
+    }
+    else
+    {
+      //get method if it is false
+      var apimethod='index';
+    }
+
+    //get provision method
+    var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
+
+    if(requestMethod=="get") {
+
+      var exceptFor='exceptForGet';
+    }
+    else {
+
+      var exceptFor='exceptForPost';
+    }
+
+    //provision object set
+    var provisionObject={};
+
+    //get provision
+    var provision=require("./app/api/provision");
+
+    //get call provision
+    var provisionMethodHasOwnProperty=false;
+
+    //get has check
+    if(typeof provision[provision_method]=="function") {
+      var provisionMethodHasOwnProperty=true;
+    }
+
+
+    //get callback provision
+    provision[requestMethod](function(provision_result) {
+
+      //success true
+      if(provision_result.success) {
+
+        if(provisionMethodHasOwnProperty) {
+
+          //get callback provision
+          provision[provision_method](function(provision_result) {
+
+            //success true
+            if(provision_result.success) {
+
+              provisionObject.success=true;
+            }
+            else {
+
+              //success false
+              provisionObject.success=false;
+              provisionObject.message=provision_result.message;
+            }
+          });
+        }
+        else {
+
+          //success true
+          provisionObject.success=true;
+        }
+      }
+      else {
+
+        provision[exceptFor](function(except) {
+
+          if(in_array(provision_method,except)) {
+            //success true
+            provisionObject.success=true;
+          }
+          else {
+            //success false
+            provisionObject.success=false;
+            provisionObject.message=provision_result.message;
+          }
+
+        });
+
+
+      }
+    });
+
+
+    if(!provisionObject.success) {
+
+      //res.json
+      res.json({success:false,message:provisionObject.message});
+      return;
+    }
+
     //check file exists
     var apifileexists="./app/api/"+project_name+"/v"+config.version+"/"+dir+"/"+fileindex+".js";
 
@@ -295,7 +391,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     else
     {
       //res.json
-      res.json({"success":false,"message":"Invalid Service"});
+      res.json({success:false,message:"Invalid Service"});
     }
 
   }
@@ -304,26 +400,14 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   {
     //get method if it is true
     var myfunc=controller[method];
-    var apimethod=method;
   }
   else
   {
     //get method if it is false
     var myfunc=controller.index;
-    var apimethod='index';
   }
 
-  //get provision method
-  var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
 
-  if(requestMethod=="get") {
-
-    var exceptFor='exceptForGet';
-  }
-  else {
-
-    var exceptFor='exceptForPost';
-  }
 
   //set global model
   global.model=require("./app/api/"+project_name+"/v"+config.version+"/"+dir+"/model/index");
@@ -345,8 +429,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
         objectLoader[requestMethod](function(object) {
 
           if(typeof object=="object") {
-            objectLoader[exceptFor](function(except)
-            {
+            objectLoader[exceptFor](function(except) {
+
               if(!in_array(provision_method,except))
               {
                 data=base.merge(object,data);
@@ -368,91 +452,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
         })
       }
 
-
-      //get provision
-      var provision=require("./app/api/provision");
-
-      //get call provision main
-      var callProvisionMethodMain=provision[requestMethod];
-
-      //get call provision
-      var provisionMethodHasOwnProperty=false;
-
-      //get has check
-      if(typeof provision[provision_method]=="function")
-      {
-        var callProvisionMethod=provision[provision_method];
-        var provisionMethodHasOwnProperty=true;
-      }
-
-
-      //get callback provision
-      callProvisionMethodMain(function(provision_result)
-      {
-
-        //success true
-        if(provision_result.success)
-        {
-          if(provisionMethodHasOwnProperty)
-          {
-            //get callback provision
-            callProvisionMethod(function(provision_result)
-            {
-              //success true
-              if(provision_result.success)
-              {
-                //res.json
-                res.json({success:true,data:data});
-              }
-              else
-              {
-                //success false
-                res.json({"success":false,"message":provision_result.message});
-              }
-            });
-          }
-          else
-          {
-            //res.json
-            res.json({success:true,data:data});
-          }
-
-
-        }
-        else
-        {
-
-          if(requestMethod=="get") {
-
-            var exceptFor=provision.exceptForGet;
-          }
-          else {
-
-            var exceptFor=provision.exceptForPost;
-          }
-
-          exceptFor(function(except)
-          {
-            if(in_array(provision_method,except))
-            {
-              //res.json
-              res.json({success:true,data:data});
-            }
-            else
-            {
-              //success false
-              res.json({"success":false,"message":provision_result.message});
-            }
-
-          });
-
-
-        }
-      });
-
-
-
-
+      //res.json
+      res.json({success:true,data:data});
 
     });
   }
