@@ -332,6 +332,12 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   {
     myfunc(function (data)
     {
+      if(typeof data!=="object")
+      {
+        //res.json
+        res.json({"success":false,"message":"data is not object"});
+      }
+
       //object loader run
       if(config.objectLoader)
       {
@@ -362,12 +368,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
         })
       }
 
-
-      if(typeof data!=="object")
-      {
-        //res.json
-        res.json({"success":false,"message":"data is not object"});
-      }
 
       //get provision
       var provision=require("./app/api/provision");
