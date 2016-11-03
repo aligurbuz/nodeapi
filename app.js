@@ -293,7 +293,9 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
    * @param {object} req
    * @public config.js
    */
-  global.query=require("./packages/seqmod/main");
+  //global.query=require("./packages/seqmod/main");
+  var Query=require(""+appDir+"/packages/seqmod/main");
+  global.query=new Query();
 
   if(name==="test")
   {
@@ -447,10 +449,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     var myfunc=controller.index;
   }
 
-
-
-  //set global model
-  global.model=require("./app/api/"+project_name+"/v"+version+"/"+dir+"/model/"+fileindex+"/"+fileindex);
 
   if(typeof myfunc=="function")
   {

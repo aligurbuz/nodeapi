@@ -1,51 +1,65 @@
 
-var query=function () {
+/**
+ * Function api method ; index
+ * Examples:
+ *
+ *     // Accept: application/json
+ *     promise then catch methoding
+ *
+ * @param {String|Array} types...
+ * @return {json}
+ * @public
+ */
+class query {
 
-  this.name                   =null;
-  this.wh                     =null;
-  this.lmt                    =null;
-  this.slct                   =null;
-  this.ofst                   =null;
-  this.exc                    =null;
-  this.order                  =null;
-  this.grp                    =null;
-  this.inc                    =null;
-  this.incType                ="left";
-  this.scp                    =null;
-};
+   constructor(){
 
-query.prototype.scope=function(scp){
-  this.scp=scp;
-  return this;
-};
+     this.name                   =null;
+     this.wh                     =null;
+     this.lmt                    =null;
+     this.slct                   =null;
+     this.ofst                   =null;
+     this.exc                    =null;
+     this.order                  =null;
+     this.grp                    =null;
+     this.inc                    =null;
+     this.incType                ="left";
+     this.scp                    =null;
+   }
 
-query.prototype.table=function(name){
+
+   scope(scp){
+     this.scp=scp;
+     return this;
+   }
+
+   table(name){
   this.name=name;
   return this;
-};
+}
 
-query.prototype.select=function(slct){
+select(slct){
 
   this.slct=slct;
   return this;
 
 };
 
-query.prototype.exclude=function(exc){
+exclude(exc){
 
   this.exc=exc;
   return this;
 
 };
 
-query.prototype.where=function(wh){
+where(wh){
 
   this.wh=wh;
   return this;
 
 };
 
-query.prototype.limit=function(lmt){
+limit(lmt){
 
   this.lmt=lmt;
   return this;
@@ -53,7 +67,7 @@ query.prototype.limit=function(lmt){
 };
 
 
-query.prototype.offset=function(ofst){
+offset(ofst){
 
   this.ofst=ofst;
   return this;
@@ -61,21 +75,21 @@ query.prototype.offset=function(ofst){
 };
 
 
-query.prototype.orderBy=function(order){
+orderBy(order){
 
   this.order=order;
   return this;
 
 };
 
-query.prototype.group=function(grp){
+group(grp){
 
   this.grp=grp;
   return this;
 
 };
 
-query.prototype.join=function(inc,type){
+join(inc,type){
 
   this.inc=inc;
   this.incType=type;
@@ -84,7 +98,7 @@ query.prototype.join=function(inc,type){
 };
 
 
-query.prototype.get=function(callback)
+get(callback)
 {
   var obj={};
   if(this.wh!==null)
@@ -171,7 +185,7 @@ query.prototype.get=function(callback)
 
 
 
-query.prototype.insert=function(post,callback){
+insert(post,callback){
 
   service.model(this.name,function(model)
   {
@@ -200,7 +214,7 @@ query.prototype.insert=function(post,callback){
 
 
 
-query.prototype.delete=function(callback)
+delete(callback)
 {
   var obj={};
   if(this.wh!==null)
@@ -254,5 +268,9 @@ query.prototype.delete=function(callback)
 
 };
 
-module.exports=new query();
 
+
+}
+
+//module exports class object
+module.exports=query;

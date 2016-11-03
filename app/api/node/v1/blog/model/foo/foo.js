@@ -7,10 +7,10 @@ module.exports = {
    * @param {object} req
    * @database user data
    */
-  user: function (callback) {
+  liste: function (callback) {
 
     //query builder for sequelize --select model
-    query.table("user").join({model:['task']}).get(function(result) {
+    query.table("user").limit(1).get(function(result) {
       callback(result);
     })
 
@@ -31,9 +31,9 @@ module.exports = {
     };
 
     //query builder for sequelize --insert model
-    query.table("user").insert(postdata,function(result) {
+    /*query.table("user").insert(postdata,function(result) {
       callback(result);
-    });
+    });*/
 
   }
 };
