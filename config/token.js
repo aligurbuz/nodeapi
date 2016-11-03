@@ -70,7 +70,7 @@ module.exports = {
      * projectName_Directory_File_Method
      * @type : array
     */
-    return [];
+    return ['all'];
 
   }
 };

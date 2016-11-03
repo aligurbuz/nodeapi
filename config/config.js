@@ -86,7 +86,7 @@ var config = module.exports = {
      *     and means automatically object loads
      *
      */
-    objectLoader    : false,
+    objectLoader    : true,
   },
 
 

@@ -16,6 +16,68 @@
 module.exports = {
 
   /**
+   * namespace for all services
+   * Function namespace module ; api namespace service
+   * get service namespace for your services
+   * Examples:
+   *
+   *     // base.namespace()
+   *     //return : service namespace
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+
+  namespace: function () {
+
+    //get name
+    var name=req.params.name;
+
+    //get project name
+    var project_name=req.params.project;
+
+    //get method
+    var method=req.params.method;
+
+    var undersplit=name.split("_");
+
+    if(undersplit.hasOwnProperty("1"))
+    {
+      var fileindex=undersplit[1];
+      var dir=undersplit[0];
+    }
+    else
+    {
+      var fileindex='index';
+      var dir=name;
+    }
+
+    if(method)
+    {
+      //get method if it is true
+      var apimethod=method;
+    }
+    else
+    {
+      //get method if it is false
+      var apimethod='index';
+    }
+
+    var namespace={};
+
+    //get namespace method
+    namespace.file='app/api/'+project_name+'/v'+config['api']['version']+'/'+dir+'/'+fileindex+'/'+apimethod;
+    namespace.directory='app/api/'+project_name+'/v'+config['api']['version']+'/'+dir+'';
+    namespace.index=fileindex;
+
+    //return
+    return namespace;
+
+  },
+
+  /**
    * base ip method for all services
    * Function base module ; api ip service
    * get client ip for your services

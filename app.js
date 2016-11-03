@@ -280,6 +280,14 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   global.service = require("./provider/service");
 
   /**
+   * Get service provider for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.source = require("./app/api/source");
+
+  /**
    * Get service query database for app.
    *
    * @param {object} req
@@ -442,7 +450,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
 
   //set global model
-  global.model=require("./app/api/"+project_name+"/v"+version+"/"+dir+"/model/index");
+  global.model=require("./app/api/"+project_name+"/v"+version+"/"+dir+"/model/"+fileindex+"/"+fileindex);
 
   if(typeof myfunc=="function")
   {
