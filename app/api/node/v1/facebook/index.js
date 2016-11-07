@@ -9,7 +9,7 @@
  * @return {json}
  * @public
  */
-class foo {
+class index {
 
   //main method
   index(callback) {
@@ -31,8 +31,8 @@ class foo {
         return callback(result);
         */
          example : function (asyncCall) {
-           source.src("model").name("foo").method("liste").get(function(liste){
-             asyncCall(null,liste);
+           source.name("index").get(function(source){
+             asyncCall(null,source)
            })
          }
 
@@ -54,4 +54,4 @@ class foo {
 }
 
 //module exports class object
-module.exports=new foo();
+module.exports=new index();

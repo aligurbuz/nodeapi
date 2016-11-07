@@ -72,7 +72,8 @@ module.exports = {
     namespace.directory='app/api/'+project_name+'/v'+config['api']['version']+'/'+dir+'';
     namespace.index=fileindex;
     namespace.project=project_name;
-    namespace.version=config['api']['version']
+    namespace.version=config['api']['version'];
+    namespace.versionPath='app/api/'+project_name+'/v'+config['api']['version']+'';
 
     //return
     return namespace;

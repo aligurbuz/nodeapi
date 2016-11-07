@@ -1,5 +1,3 @@
-var source=require("./app/api/source");
-var query=require("./packages/seqmod/main");
 /**
  * Function api method ; index
  * Examples:
@@ -11,7 +9,7 @@ var query=require("./packages/seqmod/main");
  * @return {json}
  * @public
  */
-class foo {
+class index {
 
   //main method
   index(callback,sourcedata) {
@@ -25,8 +23,9 @@ class foo {
      */
 
     //return callback
-    callback("test2")
-
+    getStatic.call(function(result) {
+      callback(result);
+    });
 
 
   }
@@ -34,4 +33,4 @@ class foo {
 }
 
 //module exports class object
-module.exports=new foo();
+module.exports=new index();

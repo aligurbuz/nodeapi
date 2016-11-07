@@ -1,11 +1,12 @@
 
 var source=function () {
 
-  this.sourcename                   =null;
-  this.sourcemethod                 =null;
-  this.appsrc                       ='null';
+  this.sourcename                   ='index';
+  this.sourcemethod                 ='index';
+  this.appsrc                       ='source';
   this.appservice                   =null;
   this.appfile                      =null;
+  this.appdir                       =null;
 };
 
 source.prototype.src=function(appsrc){
@@ -24,35 +25,52 @@ source.prototype.method=function(sourcemethod){
   return this;
 };
 
-source.prototype.get=function(callback,sourcedata){
-
-  if(this.sourcename!==null && this.sourcemethod!==null && this.appsrc!==null)
-  {
-    var namespace=base.namespace();
-
-    var getSource=require(""+appDir+"/"+namespace.directory+"/"+this.appsrc+"/"+namespace.index+"/"+this.sourcename+"");
-
-
-
-
-    if(this.sourcemethod!==null)
-    {
-      getSource[this.sourcemethod](function(result)
-      {
-        callback(result);
-      },sourcedata)
-    }
-
-
-  }
-
-
-};
 
 source.prototype.service=function(appservice){
 
   this.appservice=appservice;
   return this;
+};
+
+source.prototype.dir=function(appdir){
+
+  this.appdir=appdir;
+  return this;
+};
+
+source.prototype.get=function(callback,sourcedata){
+
+  if(this.sourcename!==null)
+  {
+    var namespace=base.namespace();
+
+    if(this.appservice==null)
+    {
+      var directory=namespace.directory;
+    }
+    else {
+      var directory=''+namespace.versionPath+'/'+this.appservice;
+    }
+
+    if(this.appdir==null)
+    {
+      var adir=namespace.index;
+    }
+    else {
+      var adir=this.appdir;
+    }
+
+    var getSource=require(""+appDir+"/"+directory+"/"+this.appsrc+"/"+adir+"/"+this.sourcename+"");
+
+    getSource[this.sourcemethod](function(result)
+    {
+      callback(result);
+    },sourcedata)
+
+
+  }
+
+
 };
 
 
@@ -66,7 +84,7 @@ source.prototype.file=function(appfile){
 
 source.prototype.mobile=function(callback,sourcedata){
 
-  if(this.appservice!==null && this.appsrc!==null && this.sourcename!==null && this.sourcemethod!==null)
+  if(this.sourcename!==null)
   {
     var namespace=base.namespace();
     var getSource=require(""+appDir+"/app/api/"+namespace.project+"/v"+namespace.version+"/"+this.appservice+"/"+this.appsrc+"/"+this.sourcename+"/"+this.appfile);
@@ -81,4 +99,4 @@ source.prototype.mobile=function(callback,sourcedata){
 };
 
 
-module.exports=new source();
+module.exports=source;

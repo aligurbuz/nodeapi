@@ -1,5 +1,3 @@
- var source=require("./app/api/source");
-
 /**
  * Function api method ; index
  * Examples:
@@ -25,25 +23,7 @@ class index {
      */
 
     //return callback
-    callback("test");
-
-
-  }
-
-
-  //main method
-  index2(callback,sourcedata) {
-
-    /*
-     Add altering object here.
-     Return a promise to correctly handle asynchronicity.
-
-     Example:
-     return callback({test:'hello world'});
-     */
-
-    //return callback
-    callback("test index2");
+    callback("source index twitter");
 
 
   }

@@ -1,4 +1,3 @@
-
 /**
  * Function api method ; index
  * Examples:
@@ -31,9 +30,9 @@ class index {
         Example:
         return callback(result);
         */
-         result : function (asyncCall) {
-           source.src("model").name("index").method("user").get(function(user){
-             asyncCall(null,user);
+         example : function (asyncCall) {
+           source.name("index").get(function(source){
+             asyncCall(null,source)
            })
          }
 

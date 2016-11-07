@@ -7,12 +7,12 @@ module.exports = {
    * @param {object} req
    * @database user data
    */
-  liste: function (callback) {
+  user: function (callback) {
 
     //query builder for sequelize --select model
-    query.table("user").limit(1).get(function(result) {
+    /*query.table("user").join({model:['task']}).get(function(result) {
       callback(result);
-    })
+    })*/
 
   },
 

@@ -285,7 +285,17 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
    * @param {object} req
    * @public config.js
    */
-  global.source = require("./app/api/source");
+  var Source = require("./app/api/source");
+  global.source=new Source();
+
+  /**
+   * Get service static for app.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  var Static = require("./app/api/static");
+  global.getStatic=new Static();
 
   /**
    * Get service query database for app.
