@@ -62,6 +62,7 @@ source.prototype.get=function(callback,sourcedata){
 
     var getSource=require(""+appDir+"/"+directory+"/"+this.appsrc+"/"+adir+"/"+this.sourcename+"");
 
+
     getSource[this.sourcemethod](function(result)
     {
       callback(result);
@@ -81,22 +82,6 @@ source.prototype.file=function(appfile){
   return this;
 };
 
-
-source.prototype.mobile=function(callback,sourcedata){
-
-  if(this.sourcename!==null)
-  {
-    var namespace=base.namespace();
-    var getSource=require(""+appDir+"/app/api/"+namespace.project+"/v"+namespace.version+"/"+this.appservice+"/"+this.appsrc+"/"+this.sourcename+"/"+this.appfile);
-
-    getSource[this.sourcemethod](function(result)
-    {
-      callback(result);
-    },sourcedata)
-  }
-
-
-};
 
 
 module.exports=source;

@@ -9,7 +9,7 @@
  * @return {json}
  * @public
  */
-class index {
+class blogExampleServiceName {
 
   //main method
   index(callback,sourcedata) {
@@ -23,7 +23,7 @@ class index {
      */
 
     //return callback
-    callback("source index twitter");
+    callback("source blogExampleServiceName");
 
 
   }
@@ -31,4 +31,4 @@ class index {
 }
 
 //module exports class object
-module.exports=new index();
+module.exports=new blogExampleServiceName();

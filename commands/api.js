@@ -69,26 +69,42 @@ cli.on("create", function(){
           fs.mkdirSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/source/'+this.argv[i]+'');
         }
 
-        var file='./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/'+this.argv[i]+'.js';
+        try {
+          fs.statSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/handle');
+          fs.mkdirSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/handle/'+this.argv[i]+'');
+        } catch(e) {
+          fs.mkdirSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/handle');
+          fs.mkdirSync('./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/handle/'+this.argv[i]+'');
+        }
+
+        if(!this['argv'].hasOwnProperty('no'))
+        {
+          var file='./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/'+this.argv[i]+'.js';
+        }
+
         var sourcefile='./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/source/'+this.argv[i]+'/'+this.argv[i]+'.js';
         var modelfile='./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/model/'+this.argv[i]+'/'+this.argv[i]+'.js';
+        var handlefile='./app/api/'+this.argv['dir']+'/'+version+'/'+i+'/handle/'+this.argv[i]+'/'+this.argv[i]+'.js';
         var namespace=this.argv[i];
       }
 
-      fs.readFile('./commands/execution/api/create.js', 'utf8', function (err,data) {
-        if (err) {
-          return console.log(err);
-        }
+      if(!this['argv'].hasOwnProperty('no')) {
 
-        var filedata=data.replace(new RegExp('blogExampleServiceName', 'g'),namespace);
+        fs.readFile('./commands/execution/api/create.js', 'utf8', function (err,data) {
+          if (err) {
+            return console.log(err);
+          }
+
+          var filedata=data.replace(new RegExp('blogExampleServiceName', 'g'),namespace);
 
 
-        fs.writeFile(file,filedata, function (err) {
-          if (err) return console.log(err);
-          console.log('api create process has been done');
+          fs.writeFile(file,filedata, function (err) {
+            if (err) return console.log(err);
+            console.log('api create process has been done');
+          });
+
         });
-
-      });
+      }
 
 
       fs.readFile('./commands/execution/api/model.js', 'utf8', function (err,data) {
@@ -118,6 +134,22 @@ cli.on("create", function(){
         fs.writeFile(sourcefile,sourcefiledata, function (err) {
           if (err) return console.log(err);
           console.log('api create source file process has been done');
+        });
+
+      });
+
+
+      fs.readFile('./commands/execution/api/handle.js', 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }
+
+        var handlefiledata=data.replace(new RegExp('blogExampleServiceName', 'g'),namespace);
+
+
+        fs.writeFile(handlefile,handlefiledata, function (err) {
+          if (err) return console.log(err);
+          console.log('api create handle file process has been done');
         });
 
       });
