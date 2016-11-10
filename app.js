@@ -203,6 +203,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
   //auth check
   var auth=require("./middleware/auth");
+  global.req=request;
   if(auth.get(request)) { return next();}
 
 
@@ -442,14 +443,13 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   if(method)
   {
     //get method if it is true
-    var myfunc=controller[method];
+    var myfunc=controller.create;
   }
   else
   {
     //get method if it is false
     var myfunc=controller.index;
   }
-
 
   if(typeof myfunc=="function")
   {

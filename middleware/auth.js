@@ -24,6 +24,8 @@ module.exports =
 {
   get: function (req)
   {
+    var base =require(""+appDir+"/provider/api/base");
+
     /**
      * req params
      * get name from url data
@@ -80,6 +82,20 @@ module.exports =
     */
     var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
 
+
+    /**
+     * req params restrictions
+     * check token if the token key is in restriction
+    */
+    var restrictions=configtoken.restrictions();
+
+    if(restrictions.hasOwnProperty(token)) {
+      //ip check
+      if(base.ip()!==restrictions[token]['ip']) {
+        return false;
+      }
+    }
+
     /**
      * req params accessWithoutToken
      * access without token if the provision_method is in accessWithoutToken
@@ -92,8 +108,17 @@ module.exports =
      * req params accessWithoutToken
      * access without token if the 'all' is in accessWithoutToken
     */
-    if(in_array('all',configtoken['accessWithoutToken']())) {
-      return true;
+    if(configtoken['accessWithoutToken']().hasOwnProperty("all")) {
+
+      var without=configtoken['accessWithoutToken']();
+      if(without['all']['ip']=="none") {
+        return true;
+      }
+
+      if(in_array(base.ip(),without['all']['ip'])) {
+        return true;
+      }
+
     }
 
     //get TokenForUsers function from token

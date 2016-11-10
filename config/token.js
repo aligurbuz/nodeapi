@@ -47,6 +47,35 @@ module.exports = {
 
   },
 
+
+  /**
+   * restriction access for services
+   * Function base module ; restriction api service
+   * get client restrictions for your services
+   *
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+
+  restrictions: function () {
+
+    /**
+     * tokens for all services
+     * provision method
+     * projectName_Directory_File_Method
+     * @type : array
+    */
+    return {
+      clientTokenHere : {
+        ip : '192.168.33.1'
+      }
+    };
+
+  },
+
   /**
    * access without token for services
    * Function base module ; api not token service
@@ -70,7 +99,60 @@ module.exports = {
      * projectName_Directory_File_Method
      * @type : array
     */
-    return ['all'];
+    return {
+      all : {
+        ip : [
+          '192.168.33.1'
+        ]
+      }
+    };
+
+  },
+
+
+
+  /**
+   * query restriction access for services
+   * Function base module ; query restriction api service
+   * get client restrictions for your services
+   *
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+
+  query_restrictions: function () {
+
+    /**
+     * query restrictions for all services
+     * query restrictions method
+     * @type : array
+    */
+    return {
+      ip : {
+        '192.168.33.1' : {
+          select      :true,
+          where       :true,
+          update      :true,
+          insert      :true,
+          delete      :true
+        }
+      },
+
+      token : {
+        'testuser' : {
+          select      :true,
+          where       :true,
+          update      :true,
+          insert      :true,
+          delete      :true
+        }
+      }
+
+
+    };
 
   }
 };

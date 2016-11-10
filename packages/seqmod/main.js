@@ -100,10 +100,22 @@ join(inc,type){
 
 get(callback)
 {
+  //load tokens for all services
+  var configtoken=require(""+appDir+"/config/token");
+
   var obj={};
   if(this.wh!==null)
   {
     obj.where=this.wh;
+
+    if(req['body'].hasOwnProperty("where")) {
+      obj.where=req['body']['where'];
+    }
+  }
+  else {
+    if(req['body'].hasOwnProperty("where")) {
+      obj.where=req['body']['where'];
+    }
   }
 
   if(this.inc!==null)
@@ -141,10 +153,87 @@ get(callback)
     obj.group=this.grp;
   }
 
+
+  //select start
+  ////////////////////////////////////////////////////////////////
   if(this.slct!==null)
   {
     obj.attributes=this.slct;
+
+    var baseToken=base.token();
+
+    if(baseToken['statu'])
+    {
+      if(req['body'].hasOwnProperty("select")) {
+
+        var configrest=configtoken.query_restrictions();
+
+        if(configrest['token'].hasOwnProperty(baseToken['get']))
+        {
+          if(configrest['token'][baseToken['get']]['select'])
+          {
+            obj.attributes=req['body']['select'];
+          }
+        }
+
+      }
+    }
+    else {
+      if(req['body'].hasOwnProperty("select")) {
+
+        var configrest=configtoken.query_restrictions();
+
+        if(configrest['ip'].hasOwnProperty(base.ip()))
+        {
+          if(configrest['ip'][base.ip()]['select'])
+          {
+            obj.attributes=req['body']['select'];
+          }
+        }
+
+      }
+    }
+
   }
+  else {
+
+    var baseToken=base.token();
+
+    if(baseToken['statu'])
+    {
+      if(req['body'].hasOwnProperty("select")) {
+
+        var configrest=configtoken.query_restrictions();
+
+        if(configrest['token'].hasOwnProperty(baseToken['get']))
+        {
+          if(configrest['token'][baseToken['get']]['select'])
+          {
+            obj.attributes=req['body']['select'];
+          }
+        }
+
+      }
+    }
+    else {
+      if(req['body'].hasOwnProperty("select")) {
+
+        var configrest=configtoken.query_restrictions();
+
+        if(configrest['ip'].hasOwnProperty(base.ip()))
+        {
+          if(configrest['ip'][base.ip()]['select'])
+          {
+            obj.attributes=req['body']['select'];
+          }
+        }
+
+      }
+    }
+
+  }
+  //select end
+  ////////////////////////////////////////////////////////////////
 
   if(this.exc!==null)
   {

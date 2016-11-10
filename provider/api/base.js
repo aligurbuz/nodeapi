@@ -107,6 +107,44 @@ module.exports = {
     return ip;
   },
 
+
+  /**
+   * base token method for all services
+   * Function base module ; api token service
+   * get client token for your services
+   * Examples:
+   *
+   *     // base.token()
+   *     //return : client token
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+
+  token: function () {
+
+    /**
+     * req params
+     * get token from url data
+    */
+    var token=req.query._token;
+
+    if(token)
+    {
+      return {
+        statu : true,
+        get : token
+      }
+    }
+    else {
+      return {
+        statu : false
+      }
+    }
+  },
+
   /**
    * base host method for all services
    * Function base module ; api host service
