@@ -443,7 +443,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   if(method)
   {
     //get method if it is true
-    var myfunc=controller.create;
+    var myfunc=controller[method];
   }
   else
   {

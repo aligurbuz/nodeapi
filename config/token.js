@@ -133,21 +133,15 @@ module.exports = {
     return {
       ip : {
         '192.168.33.1' : {
-          select      :true,
-          where       :true,
-          update      :true,
-          insert      :true,
-          delete      :true
+          select      :false,
+          where       :false
         }
       },
 
       token : {
         'testuser' : {
-          select      :true,
-          where       :true,
-          update      :true,
-          insert      :true,
-          delete      :true
+          select      :false,
+          where       :false
         }
       }
 

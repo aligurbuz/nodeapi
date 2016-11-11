@@ -22,6 +22,8 @@ module.exports = {
       }
     });
 
+    global.Connection=connection;
+
     //table definition
     var User = connection.define('user', {
       firstName: {
@@ -35,7 +37,6 @@ module.exports = {
         type: Sequelize.INTEGER
       }
     },{
-
       scopes : {
         activeUser : {
           where : {

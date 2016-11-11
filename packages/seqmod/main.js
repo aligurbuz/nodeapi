@@ -103,18 +103,46 @@ get(callback)
   //load tokens for all services
   var configtoken=require(""+appDir+"/config/token");
 
+  //get base token boolean
+  var baseToken=base.token();
+
   var obj={};
   if(this.wh!==null)
   {
     obj.where=this.wh;
-
-    if(req['body'].hasOwnProperty("where")) {
-      obj.where=req['body']['where'];
-    }
   }
-  else {
-    if(req['body'].hasOwnProperty("where")) {
-      obj.where=req['body']['where'];
+
+  if(req['body'].hasOwnProperty("where")) {
+
+    var configrest=configtoken.query_restrictions();
+
+    if(baseToken['statu']) {
+      if(configrest['token'].hasOwnProperty(baseToken['get']))
+      {
+        if(configrest['token'][baseToken['get']]['where'])
+        {
+          obj.where=req['body']['where'];
+        }
+      }
+    }
+    else {
+
+      if(configrest['ip'].hasOwnProperty(base.ip()))
+      {
+        if(configrest['ip'][base.ip()]['where'])
+        {
+          obj.where=req['body']['where'];
+        }
+      }
+      else {
+        if(configrest['ip'].hasOwnProperty("none"))
+        {
+          if(configrest['ip']['none']['where'])
+          {
+            obj.where=req['body']['where'];
+          }
+        }
+      }
     }
   }
 
@@ -159,79 +187,42 @@ get(callback)
   if(this.slct!==null)
   {
     obj.attributes=this.slct;
+  }
 
-    var baseToken=base.token();
+  if(req['body'].hasOwnProperty("select")) {
 
-    if(baseToken['statu'])
-    {
-      if(req['body'].hasOwnProperty("select")) {
+    var configrest=configtoken.query_restrictions();
 
-        var configrest=configtoken.query_restrictions();
-
-        if(configrest['token'].hasOwnProperty(baseToken['get']))
+    if(baseToken['statu']) {
+      if(configrest['token'].hasOwnProperty(baseToken['get']))
+      {
+        if(configrest['token'][baseToken['get']]['select'])
         {
-          if(configrest['token'][baseToken['get']]['select'])
-          {
-            obj.attributes=req['body']['select'];
-          }
+          obj.attributes=req['body']['select'];
         }
-
       }
     }
     else {
-      if(req['body'].hasOwnProperty("select")) {
 
-        var configrest=configtoken.query_restrictions();
-
-        if(configrest['ip'].hasOwnProperty(base.ip()))
+      if(configrest['ip'].hasOwnProperty(base.ip()))
+      {
+        if(configrest['ip'][base.ip()]['select'])
         {
-          if(configrest['ip'][base.ip()]['select'])
+          obj.attributes=req['body']['select'];
+        }
+      }
+      else {
+        if(configrest['ip'].hasOwnProperty("none"))
+        {
+          if(configrest['ip']['none']['select'])
           {
             obj.attributes=req['body']['select'];
           }
         }
-
       }
     }
-
   }
-  else {
 
-    var baseToken=base.token();
-
-    if(baseToken['statu'])
-    {
-      if(req['body'].hasOwnProperty("select")) {
-
-        var configrest=configtoken.query_restrictions();
-
-        if(configrest['token'].hasOwnProperty(baseToken['get']))
-        {
-          if(configrest['token'][baseToken['get']]['select'])
-          {
-            obj.attributes=req['body']['select'];
-          }
-        }
-
-      }
-    }
-    else {
-      if(req['body'].hasOwnProperty("select")) {
-
-        var configrest=configtoken.query_restrictions();
-
-        if(configrest['ip'].hasOwnProperty(base.ip()))
-        {
-          if(configrest['ip'][base.ip()]['select'])
-          {
-            obj.attributes=req['body']['select'];
-          }
-        }
-
-      }
-    }
-
-  }
   //select end
   ////////////////////////////////////////////////////////////////
 
@@ -283,6 +274,33 @@ insert(post,callback){
       model.create(
 
         post
+      ).then(function(result)
+        {
+          callback(result);
+        }).
+        catch(function(error)
+        {
+          callback({error:error.errors});
+        });
+    });
+
+  });
+};
+
+
+
+update(post,callback){
+
+  var whereupdate=this.wh;
+  service.model(this.name,function(model)
+  {
+    model.sync().then(function()
+    {
+      model.update(
+
+        post,
+        {where :whereupdate}
+
       ).then(function(result)
         {
           callback(result);
