@@ -2,7 +2,7 @@
 //redis function
 module.exports = {
 
-  get: function () {
+  get: function (Se) {
 
     //configuration database
     var database=require(""+appDir+"/config/database");
@@ -22,7 +22,6 @@ module.exports = {
       }
     });
 
-    global.Connection=connection;
 
     //table definition
     var User = connection.define('user', {

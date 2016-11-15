@@ -25,6 +25,7 @@ class query {
      this.inc                    =null;
      this.incType                ="left";
      this.scp                    =null;
+     this.transac                =null;
    }
 
 
@@ -374,6 +375,70 @@ delete(callback)
 
 
 };
+
+
+transaction (query,callback)
+{
+  //configuration database
+  var database=require(""+appDir+"/config/database");
+
+  //sequelize modul
+  var Sequelize=require("sequelize");
+
+  //set connection
+  var connection = new Sequelize(database.database,database.user,database.password, {
+    host: database.host,
+    dialect: database.dialect,
+
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    }
+  });
+
+      var Promise=require("promise");
+
+          connection.transaction({
+            autocommit : true,
+        isolationLevel: connection.Transaction.ISOLATION_LEVELS.SERIALIZABLE
+      }, function (t) {
+
+          var queries=[];
+
+          for (var i=0; i<Object.keys(query).length; i++)
+          {
+            if(query[i]['process']=="create")
+            {
+              queries.push(service.model(query[i]['model']).create(query[i]['postdata'], { transaction: t }))
+            }
+
+          }
+
+          return Promise.all(queries).then(function(result){
+           callback({poststatu : true});
+         }).catch(function(err){
+           callback({poststatu : false,rollback : t.rollback(),error:err.errors});
+         });
+
+        });
+
+
+        //using
+        /*var data = [
+          {
+            postdata : { },
+            model : 'modelname',
+            process : 'create|update|delete'
+          }
+        ];
+
+        query.transaction(data,function(result){
+          callback(result)
+        })*/
+
+};
+
 
 
 
