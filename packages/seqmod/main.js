@@ -26,11 +26,17 @@ class query {
      this.incType                ="left";
      this.scp                    =null;
      this.transac                =null;
+     this.rds                    =false;
    }
 
 
    scope(scp){
      this.scp=scp;
+     return this;
+   }
+
+   redis(rds){
+     this.rds=rds;
      return this;
    }
 
@@ -247,7 +253,7 @@ get(callback)
   var databaseConf=require(""+appDir+"/config/database");
 
 
-  if(databaseConf.redis_cache)
+  if(databaseConf.redis_cache && this.rds)
   {
     service.get("redis",function(redisresult){
       if(redisresult=="nokey")

@@ -12,7 +12,7 @@ var database = module.exports = {
   database                : 'Prosystem',
   user                    : 'root',
   password                : 'laraappdevman*09',
-  redis_cache             : false,
+  redis_cache             : true,
   redis_cache_expire      : 60
 
 };
