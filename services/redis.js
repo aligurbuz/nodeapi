@@ -12,19 +12,35 @@ module.exports = {
 
     if(data.type=="get")
     {
-      client.get(data.get, function (err, reply) {
-
-        if(err)
+      client.exists(data.get,function(err,reply){
+        if(reply===1)
         {
-          callback(null);
-        }
-        else
-        {
-          callback(reply);
-        }
+          client.get(data.get, function (err, reply) {
+
+            if(err)
+            {
+              callback(null);
+            }
+            else
+            {
+              if(data.content=="json")
+              {
+                callback(JSON.parse(reply));
+              }
+              else {
+                callback(reply);
+              }
+
+            }
 
 
-      });
+          });
+
+        }
+        else {
+          callback("nokey");
+        }
+      })
 
     }
 
@@ -38,7 +54,26 @@ module.exports = {
         }
         else
         {
-          callback(reply);
+          if(data['set'].hasOwnProperty("ttl"))
+          {
+            client.expire(data.set.key,data.set.ttl);
+          }
+
+          client.get(data.set.key,function(err,reply){
+            if(err){
+              callback(err);
+            }
+            else {
+
+              if(data.content=="json")
+              {
+                callback(JSON.parse(reply));
+              }else {
+                callback(reply);
+              }
+
+            }
+          })
         }
       });
 

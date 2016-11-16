@@ -237,29 +237,90 @@ get(callback)
     var scp=this.scp;
   }
 
+  var md5=require("md5");
+  var objmd5=md5(obj);
+  var redis_cache='query_'+objmd5;
 
-  if(this.name!==null)
+  var redisObj={};
+  var tname=this.name;
+
+  var databaseConf=require(""+appDir+"/config/database");
+
+
+  if(databaseConf.redis_cache)
   {
-    service.model(this.name,function(model,seq)
-    {
-      model.sync().then(function()
+    service.get("redis",function(redisresult){
+      if(redisresult=="nokey")
       {
-        model.scope(scp).findAll(obj).then(function(admin)
+        if(tname!==null)
         {
-          callback(admin);
-        })
-          .catch(function(error)
+          service.model(tname,function(model,seq)
           {
-            callback(error);
-          })
-      });
+            model.sync().then(function()
+            {
+              model.scope(scp).findAll(obj).then(function(admin)
+              {
 
-    });
+                service.get("redis",function(setres){
+
+                  callback(setres);
+
+                },{type:'set',content:'json',set:{key:redis_cache,value:JSON.stringify(admin),ttl:120}})
+
+
+              })
+                .catch(function(error)
+                {
+                  callback(error);
+                })
+            });
+
+          });
+        }
+        else
+        {
+          callback("no table");
+        }
+      }
+      else {
+        callback(redisresult);
+      }
+    },{type:'get',get:redis_cache,content:'json'});
   }
-  else
-  {
-    callback("no table");
+  else {
+
+
+    if(this.name!==null)
+    {
+      service.model(this.name,function(model,seq)
+      {
+        model.sync().then(function()
+        {
+          model.scope(scp).findAll(obj).then(function(admin)
+          {
+            callback(admin);
+          })
+            .catch(function(error)
+            {
+              callback(error);
+            })
+        });
+
+      });
+    }
+    else
+    {
+      callback("no table");
+    }
+
   }
+
+
+
+
+
+
+
 
 
 };

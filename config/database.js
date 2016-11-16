@@ -11,6 +11,7 @@ var database = module.exports = {
   host          : 'localhost',
   database      : 'Prosystem',
   user          : 'root',
-  password      : 'laraappdevman*09'
+  password      : 'laraappdevman*09',
+  redis_cache   : false
 
 };
