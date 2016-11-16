@@ -265,7 +265,7 @@ get(callback)
 
                   callback(setres);
 
-                },{type:'set',content:'json',set:{key:redis_cache,value:JSON.stringify(admin),ttl:120}})
+                },{type:'set',content:'json',set:{key:redis_cache,value:JSON.stringify(admin),ttl:databaseConf.redis_cache_expire}})
 
 
               })
