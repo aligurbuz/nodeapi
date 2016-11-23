@@ -496,7 +496,33 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       //res.json
       //json authorize true
       response.setHeader('Content-Type', 'application/json');
-      res.json({success:true,data:data});
+
+      if(!config['api']['logging']['status'])
+      {
+          res.json({success:true,data:data});
+      }
+      else {
+        var log=require("./services/logging");
+
+        var logging=log[config['api']['logging']['adapter']];
+
+        logging(data,function(result){
+
+          if(result){
+            res.json({success:true,data:data});
+          }
+          else {
+            res.json({success:false,msg:'Logging False'});
+          }
+
+        })
+      }
+
+
+
+
+
+
 
     });
   }

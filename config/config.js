@@ -87,6 +87,20 @@ var config = module.exports = {
      *
      */
     objectLoader    : false,
+
+
+    /**
+     * logging : [boolean]
+     * definition:
+     *
+     *     //that is loader automatically logging for all api services
+     *     and means automatically object loads
+     *
+     */
+    logging    : {
+      status : true,
+      adapter : 'mysql'
+    }
   },
 
 
