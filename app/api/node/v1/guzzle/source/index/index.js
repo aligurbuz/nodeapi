@@ -23,9 +23,7 @@ class index {
      */
 
     //return callback
-    source.src("model").method("user").get(function(result){
-      callback(result)
-    })
+    callback("source index");
 
 
   }

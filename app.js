@@ -47,7 +47,7 @@ var express=require("express");
  */
 var app=express();
 
-global.http = require('http').Server(app);
+var http = require('http').Server(app);
 
 /**
  * express route body parser .

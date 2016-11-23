@@ -12,9 +12,18 @@
 class index {
 
   //main method
-  index(callback) {
+  index(callback,sourcedata) {
 
-    callback({id:1})
+    /*
+     Add altering object here.
+     Return a promise to correctly handle asynchronicity.
+
+     Example:
+     return callback({test:'hello world'});
+     */
+
+    //return callback
+    callback("source index");
 
 
   }
