@@ -47,6 +47,8 @@ var express=require("express");
  */
 var app=express();
 
+global.http = require('http').Server(app);
+
 /**
  * express route body parser .
  *
@@ -516,4 +518,4 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
  * @param {object} req
  * @public
  */
-app.listen(config.port);
+http.listen(config.port);
