@@ -65,6 +65,7 @@ module.exports = {
 
     //get namespace method
     namespace.file='app/api/'+project_name+'/v'+config['api']['version']+'/'+dir+'/'+fileindex+'/'+apimethod;
+    namespace.serviceName=dir;
     namespace.directory='app/api/'+project_name+'/v'+config['api']['version']+'/'+dir+'';
     namespace.index=fileindex;
     namespace.project=project_name;
@@ -74,6 +75,7 @@ module.exports = {
     namespace.clientDevice=base.getDevice();
     namespace.clientToken=base.token();
     namespace.clientHost=base.host();
+    namespace.clientRequestTime=new Date().getTime();
 
     //return
     return namespace;
@@ -218,5 +220,39 @@ module.exports = {
     for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
     for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
     return obj3;
+  }
+
+
+  ,
+
+
+  /**
+   * merge two different object keys for all services
+   * Function base module ; api merge service for objects
+   * get client merge information for your services
+   * Examples:
+   *
+   *     // base.merge(obj1,obj2)
+   *     //return : client device information
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+  exceptObjectKey :function (obj,except)
+  {
+     var list={};
+
+     var in_array=require("in_array");
+
+     for(var index in obj) {
+        if(!in_array(index,except))
+        {
+          list['index']=obj[index];
+        }
+     }
+
+     return list;
   }
 };

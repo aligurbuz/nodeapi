@@ -26,7 +26,7 @@ class query {
      this.incType                ="left";
      this.scp                    =null;
      this.transac                =null;
-     this.rds                    =false;
+     this.rds                    =true;
    }
 
 
@@ -110,6 +110,9 @@ get(callback)
   //load tokens for all services
   var configtoken=require(""+appDir+"/config/token");
 
+
+  var databaseConf=require(""+appDir+"/config/database");
+
   //get base token boolean
   var baseToken=base.token();
 
@@ -118,6 +121,7 @@ get(callback)
   {
     obj.where=this.wh;
   }
+
 
   if(req['body'].hasOwnProperty("where")) {
 
@@ -165,8 +169,20 @@ get(callback)
       var jointype=true;
     }
 
+    if(databaseConf.redis_cache && this.rds) {
+
+      var redisForJoin={};
+      redisForJoin.model=this['inc']['model'];
+      redisForJoin.select=this['inc']['select'];
+      redisForJoin.required=jointype;
+
+    }
+
     obj.include=[{model:service.model(this['inc']['model']),attributes:this['inc']['select'],required:jointype}];
+
+
   }
+
 
   if(this.lmt!==null)
   {
@@ -195,6 +211,8 @@ get(callback)
   {
     obj.attributes=this.slct;
   }
+
+
 
   if(req['body'].hasOwnProperty("select")) {
 
@@ -243,18 +261,30 @@ get(callback)
     var scp=this.scp;
   }
 
-  var md5=require("md5");
-  var objmd5=md5(obj);
-  var redis_cache='query_'+objmd5;
-
-  var redisObj={};
-  var tname=this.name;
-
-  var databaseConf=require(""+appDir+"/config/database");
 
 
   if(databaseConf.redis_cache && this.rds)
   {
+
+    var md5=require("md5");
+
+    if(this.inc!==null){
+
+      var exceptInclude=base.exceptObjectKey(obj,['include']);
+      var redisForJoinMerge=base.merge(exceptInclude,redisForJoin);
+
+      var objmd5=md5(JSON.stringify(redisForJoinMerge));
+    }
+    else {
+      var objmd5=md5(JSON.stringify(obj));
+    }
+
+    var redis_cache='query_'+objmd5;
+
+    var redisObj={};
+    var tname=this.name;
+
+
     service.get("redis",function(redisresult){
       if(redisresult=="nokey")
       {
