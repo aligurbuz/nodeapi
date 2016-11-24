@@ -32,7 +32,7 @@ class objectLoader {
      * @return {json}
      * @return
      */
-    callback({namespace:base.namespace(),ip:base.ip()});
+    callback({client:base.namespace()});
 
   }
 

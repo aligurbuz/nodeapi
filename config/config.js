@@ -69,6 +69,16 @@ var config = module.exports = {
   api    : {
 
     /**
+     * data key : [string]
+     * definition:
+     *
+     *     //that is result data key for api services
+     *     and means project data key
+     *
+     */
+    datakey         : 'result',
+
+    /**
      * version : [integer]
      * definition:
      *
@@ -86,7 +96,7 @@ var config = module.exports = {
      *     and means automatically object loads
      *
      */
-    objectLoader    : false,
+    objectLoader    : true,
 
 
     /**

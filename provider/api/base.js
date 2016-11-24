@@ -43,24 +43,20 @@ module.exports = {
 
     var undersplit=name.split("_");
 
-    if(undersplit.hasOwnProperty("1"))
-    {
+    if(undersplit.hasOwnProperty("1")){
       var fileindex=undersplit[1];
       var dir=undersplit[0];
     }
-    else
-    {
+    else{
       var fileindex='index';
       var dir=name;
     }
 
-    if(method)
-    {
+    if(method){
       //get method if it is true
       var apimethod=method;
     }
-    else
-    {
+    else{
       //get method if it is false
       var apimethod='index';
     }
@@ -74,6 +70,10 @@ module.exports = {
     namespace.project=project_name;
     namespace.version=config['api']['version'];
     namespace.versionPath='app/api/'+project_name+'/v'+config['api']['version']+'';
+    namespace.clientIp=base.ip();
+    namespace.clientDevice=base.getDevice();
+    namespace.clientToken=base.token();
+    namespace.clientHost=base.host();
 
     //return
     return namespace;

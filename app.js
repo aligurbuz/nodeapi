@@ -457,6 +457,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
   {
     myfunc(function (data)
     {
+      var data={result:data};
+
       if(typeof data!=="object")
       {
         //res.json
@@ -502,11 +504,16 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
           res.json({success:true,data:data});
       }
       else {
-        var log=require("./services/logging");
+        var log=require("./logging");
 
         var logging=log[config['api']['logging']['adapter']];
 
-        logging(data,function(result){
+        var loggingData={
+          client    : base.namespace(),
+          server    : data
+        }
+
+        logging(loggingData,function(result){
 
           if(result){
             res.json({success:true,data:data});
