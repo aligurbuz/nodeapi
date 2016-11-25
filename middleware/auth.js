@@ -100,8 +100,20 @@ module.exports =
      * req params accessWithoutToken
      * access without token if the provision_method is in accessWithoutToken
     */
-    if(in_array(provision_method,configtoken['accessWithoutToken']())) {
-      return true;
+
+    if(configtoken['accessWithoutToken']().hasOwnProperty(provision_method)) {
+
+      var without=configtoken['accessWithoutToken']();
+      if(without[provision_method]['ip']=="none") {
+        return true;
+      }
+
+      if(in_array(base.ip(),without[provision_method]['ip'])) {
+        return true;
+      }
+
+      return false;
+
     }
 
     /**
