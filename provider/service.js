@@ -7,12 +7,24 @@ module.exports = {
 
     if(service!==null)
     {
-      var servicename=require(""+appDir+"/services/"+service);
 
-      servicename.index(data,function(result)
-      {
-        callback(result);
-      });
+      if(typeof service=="object") {
+        var servicename=require(""+appDir+"/services/"+service['name']);
+
+        servicename[service['method']](data,function(result)
+        {
+          callback(result);
+        });
+      }
+      else {
+        var servicename=require(""+appDir+"/services/"+service);
+
+        servicename.index(data,function(result)
+        {
+          callback(result);
+        });
+      }
+
     }
 
 

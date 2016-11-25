@@ -26,7 +26,7 @@ class query {
      this.incType                ="left";
      this.scp                    =null;
      this.transac                =null;
-     this.rds                    =true;
+     this.rds                    =false;
    }
 
 

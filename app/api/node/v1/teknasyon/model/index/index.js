@@ -31,9 +31,9 @@ module.exports = {
     };
 
     //query builder for sequelize --insert model
-    /*query.table("user").insert(postdata,function(result) {
+    query.table("user").insert(postdata,function(result) {
       callback(result);
-    });*/
+    });
 
   }
 };

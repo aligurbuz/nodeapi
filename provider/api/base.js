@@ -76,7 +76,7 @@ module.exports = {
     namespace.clientToken=base.token();
     namespace.clientHost=base.host();
     namespace.clientRequestTime=new Date().getTime();
-
+    namespace.clientHttpHeaders=base.httpHeaders();
     //return
     return namespace;
 
@@ -135,10 +135,22 @@ module.exports = {
 
     if(token)
     {
-      return {
-        statu : true,
-        get : token
+      var in_array=require("in_array");
+
+      if(in_array(token,config['TokenForUsers']))
+      {
+        return {
+          statu : true,
+          get : token
+        }
       }
+      else {
+
+        return {
+          statu : false
+        }
+      }
+
     }
     else {
       return {
@@ -172,6 +184,33 @@ module.exports = {
 
     //return
     return host;
+  },
+
+
+  /**
+   * base http header method for all services
+   * Function base module ; api header service
+   * get client http headers for your services
+   * Examples:
+   *
+   *     // base.httpHeaders()
+   *     //return : client host name
+   *
+   *
+   * @param {String|Array} types...
+   * @return {json}
+   * @return
+   */
+
+  httpHeaders : function(key=null)
+  {
+    if(key==null)
+    {
+      return req.headers;
+    }
+    else {
+      return req['headers'][key];
+    }
   },
 
   /**
