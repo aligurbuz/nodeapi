@@ -199,10 +199,6 @@ app.use(function(req,res,next){
 app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
 
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  //response.setHeader('Access-Control-Allow-Credentials', true);
-
   //auth check
   var auth=require("./middleware/auth");
   global.req=request;
@@ -216,6 +212,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 //next blog
 },function (request,response,next)
 {
+
+  response.setHeader('Content-Type', 'application/json');
 
   /**
    * service request type.
@@ -248,6 +246,15 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
    * @public config.js
    */
   global.req=request;
+
+
+  /**
+   * Get global environment for app settings.
+   *
+   * @param {object} req
+   * @public config.js
+   */
+  global.environment=app.get("env");
 
   /**
    * Get global response for app settings.
@@ -415,7 +422,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
       //res.json
       //json authorize true
-      response.setHeader('Content-Type', 'application/json');
       res.json({success:false,message:provisionObject.message});
       return;
     }
@@ -436,7 +442,6 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     {
       //res.json
       //json authorize true
-      response.setHeader('Content-Type', 'application/json');
       res.json({success:false,message:"Invalid Service"});
     }
 

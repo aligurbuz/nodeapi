@@ -64,6 +64,7 @@ module.exports = {
     var namespace={};
 
     //get namespace method
+    namespace.environment=environment;
     namespace.file='app/api/'+project_name+'/v'+config['api']['version']+'/'+dir+'/'+fileindex+'/'+apimethod;
     namespace.serviceName=dir;
     namespace.directory='app/api/'+project_name+'/v'+config['api']['version']+'/'+dir+'';
