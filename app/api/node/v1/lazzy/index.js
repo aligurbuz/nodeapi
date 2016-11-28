@@ -9,7 +9,7 @@
  * @return {json}
  * @public
  */
-class blogExampleServiceName {
+class index {
 
   //main method
   index(callback) {
@@ -23,7 +23,25 @@ class blogExampleServiceName {
      */
 
      //callback
-     callback("hello service")
+
+     var elasticsearch={
+       name: 'elasticsearch',
+       method:'search'
+     }
+
+     var search={
+       index        : 'node',
+       type         : 'teknasyon',
+       query        : {
+         query: {
+           match: { "firstName": "emir" }
+         }
+       }
+     }
+
+     service.get(elasticsearch,function(result){
+       callback(result)
+     },search)
 
 
   }
@@ -31,4 +49,4 @@ class blogExampleServiceName {
 }
 
 //module exports class object
-module.exports=blogExampleServiceName;
+module.exports=index;

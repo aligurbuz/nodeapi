@@ -436,7 +436,8 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     if(fileExists(apifileexists))
     {
       //get controller
-      var controller=require("./app/api/"+project_name+"/v"+version+"/"+dir+"/"+fileindex);
+      var Controller=require("./app/api/"+project_name+"/v"+version+"/"+dir+"/"+fileindex);
+      var controller=new Controller();
     }
     else
     {
