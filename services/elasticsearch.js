@@ -45,7 +45,7 @@ module.exports = {
         index: data.index,
         id: data.id,
         type: data.type,
-        body: data.body
+        body: data.query
       },function(err,resp,status) {
         if(err){
           callback(err)
