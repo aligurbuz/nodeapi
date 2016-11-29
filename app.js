@@ -68,6 +68,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
  */
 app.use('/static',express.static(__dirname + '/app/http/public'));
 
+var favicon = require('serve-favicon');
+app.use(favicon(__dirname + '/favicon.ico'));
+
 /**
  * express route .
  *
@@ -76,6 +79,10 @@ app.use('/static',express.static(__dirname + '/app/http/public'));
  */
 app.all("/:name/:method?/:ext?",function (request,response,next)
 {
+  if(request.params.name=="favicon.ico")
+  {
+    response.send("favicon.ico")
+  }
   /**
    * Get base provider for app.
    *
@@ -102,6 +109,7 @@ app.all("/:name/:method?/:ext?",function (request,response,next)
 
   //get name
   var name=request.params.name;
+
 
   //get name
   var ext=request.params.ext;
@@ -198,7 +206,7 @@ app.use(function(req,res,next){
 
 app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
-
+  console.log(request.url);
   //auth check
   var auth=require("./middleware/auth");
   global.req=request;
