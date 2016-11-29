@@ -78,7 +78,29 @@ module.exports = {
           callback(error)
         }
         else {
-          callback(response)
+
+          if(data.hasOwnProperty("result"))
+          {
+            if(data.result=="getList") {
+              callback(response)
+            }
+
+            if(data.result=="getIds") {
+              var hitscount=Object.keys(response['hits']['hits']).length;
+              var idslist=[];
+              for (var i=0; i<hitscount; i++) {
+                idslist.push(response['hits']['hits'][i]['_id']);
+              }
+
+              callback({searchIds:idslist})
+            }
+          }
+          else {
+            callback(response)
+          }
+
+
+
         }
       });
       }
@@ -89,3 +111,32 @@ module.exports = {
 
 
 };
+
+
+/*var elasticsearch={
+  name: 'elasticsearch',
+  method:'search'
+}
+
+var search={
+  index        : 'node',
+  type         : 'teknasyon',
+  result       : 'getList',
+  query        : {
+
+    query : {
+      dis_max : {
+        queries : [
+          {match : {firstName :'nursel beşiktaş'}},
+          {match :{country : 'nursel beşiktaş'}}
+        ]
+      }
+
+    }
+
+  }
+}
+
+service.get(elasticsearch,function(result){
+  callback(result)
+},search)*/

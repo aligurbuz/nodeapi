@@ -76,7 +76,16 @@ limit(lmt){
 
 offset(ofst){
 
-  this.ofst=ofst;
+  if(req['query'].hasOwnProperty("page"))
+  {
+    var offset=req['query']['page']-1;
+    var limitation=offset*this.lmt;
+    this.ofst=limitation;
+  }
+  else {
+    this.ofst=ofst;
+  }
+
   return this;
 
 };
@@ -189,10 +198,27 @@ get(callback)
     obj.limit=this.lmt;
   }
 
-  if(this.ofst!==null)
+  if(this.lmt!==null)
   {
-    obj.offset=this.ofst;
+    if(req['query'].hasOwnProperty("page"))
+    {
+      var offset=req['query']['page']-1;
+      var limitation=offset*this.lmt;
+      obj.offset=limitation;
+    }
+    else {
+      obj.offset=0;
+    }
+
   }
+  else {
+    if(this.ofst!==null)
+    {
+      obj.offset=this.ofst;
+    }
+  }
+
+
 
   if(this.order!==null)
   {
@@ -334,7 +360,13 @@ get(callback)
         {
           model.scope(scp).findAll(obj).then(function(admin)
           {
-            callback(admin);
+            var dquery={};
+            dquery.offset=obj.offset;
+            dquery.limit=obj.limit;
+            dquery.data=admin;
+
+
+            callback({query:dquery});
           })
             .catch(function(error)
             {

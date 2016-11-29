@@ -28,6 +28,8 @@
   },
   "devDependencies": {
     "debug-log": "^1.0.1",
+    "forever": "^0.15.3",
+    "forever-monitor": "^1.7.1",
     "n-cli": "^1.0.8",
     "nodemon": "^1.11.0",
     "pm2": "^2.0.18",
