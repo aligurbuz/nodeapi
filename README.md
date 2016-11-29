@@ -12,14 +12,11 @@ node commands/api create --dir app --ghost index
 
 node commands/api create --dir app --ghost example
 
+# export in model directory all existing table in db
+node commands/dbschema get
+
 # creating db model
 node commands/model create --model user
-
-# export in model directory all existing table in db
-node commands/dbexport get --table all
-
-# export in model directory specified existing table in db
-node commands/dbexport get --table admins
 
 # call api service with browser
 http://ip:3000/api/app/ghost/?_token=testuser
