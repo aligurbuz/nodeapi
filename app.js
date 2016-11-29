@@ -206,7 +206,7 @@ app.use(function(req,res,next){
 
 app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
-  console.log(request.url);
+  
   //auth check
   var auth=require("./middleware/auth");
   global.req=request;

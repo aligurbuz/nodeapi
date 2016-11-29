@@ -4,35 +4,19 @@ module.exports = {
 
   get: function (Sequelize) {
 
-    //configuration database
-    var database=require(""+appDir+"/config/database");
+    //get connection
+    var con=require(""+appDir+"/model/connection/connection");
 
-    //set connection
-    var connection = new Sequelize(database.database,database.user,database.password, {
-      host: database.host,
-      dialect: database.dialect,
+    var connection=con(appDir,Sequelize);
 
-      pool: {
-        max: 50,
-        min: 0,
-        idle: 10000
-      }
-    });
+    var schema=require(""+appDir+"/model/schemas/tasks");
 
-    //table definition
-    var task = connection.define('task', {
 
-      taskname: {
-        type: Sequelize.STRING
-      },
-      userId: {
-        type: Sequelize.INTEGER
-      }
-    });
+    var task=schema(connection,Sequelize)
 
+    //task.hasMany(service.model("task"));
 
     return task;
-
 
 
   }
