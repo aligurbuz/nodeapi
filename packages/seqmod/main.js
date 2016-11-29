@@ -305,10 +305,12 @@ get(callback)
       var objmd5=md5(JSON.stringify(obj));
     }
 
-    var redis_cache='query_'+objmd5;
-
     var redisObj={};
     var tname=this.name;
+
+    var redis_cache='query_'+tname+'_'+objmd5;
+
+
 
 
     service.get("redis",function(redisresult){

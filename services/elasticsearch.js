@@ -60,6 +60,34 @@ module.exports = {
   },
 
 
+
+  delete: function (data,callback) {
+
+    var client=this.connection();
+
+    client.cluster.health({},function(err,resp,status) {
+    if(err){
+      callback(err)
+    }
+    else {
+      client.delete({
+        index: data.index,
+        id: data.id,
+        type: data.type
+      },function(err,resp,status) {
+        if(err){
+          callback(err)
+        }
+        else {
+          callback(resp)
+        }
+      });
+      }
+      });
+
+  },
+
+
   search: function (data,callback) {
 
     var client=this.connection();
