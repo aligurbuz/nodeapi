@@ -325,7 +325,13 @@ get(callback)
 
                 service.get("redis",function(setres){
 
-                  callback(setres);
+                  var dquery={};
+                  dquery.offset=obj.offset;
+                  dquery.limit=obj.limit;
+                  dquery.data=setres;
+
+
+                  callback({query:dquery});
 
                 },{type:'set',content:'json',set:{key:redis_cache,value:JSON.stringify(admin),ttl:databaseConf.redis_cache_expire}})
 
@@ -345,7 +351,13 @@ get(callback)
         }
       }
       else {
-        callback(redisresult);
+
+        var dquery={};
+        dquery.offset=obj.offset;
+        dquery.limit=obj.limit;
+        dquery.data=redisresult;
+
+        callback({query:dquery});
       }
     },{type:'get',get:redis_cache,content:'json'});
   }
