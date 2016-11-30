@@ -18,7 +18,7 @@ npm update
 
 ```
 
-#create your first service
+#create your first rest api service
 
 ```
 node commands/api create --dir node --ghost index
