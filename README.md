@@ -61,6 +61,14 @@ http://ip:3000/api/node/service/ghost
 
 ```
 
+* Service access information :
+
+```diff
++ service/ghost :calls index method in app/api/node/v1/ghost/index.js (actually service/ghost/index)
++ service/ghost/foo :calls foo method in app/api/node/v1/ghost/index.js
+
+```
+
 #yes,wow,result : hello service
 # you can see index.js file in app/api/node/v1/ghost/
 
