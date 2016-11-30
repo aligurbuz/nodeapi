@@ -25,6 +25,9 @@ node commands/api create --dir node --ghost index
 
 ```
 
+* Params *
+
+
 #yes!!! it worked and as output:
 
 > api create handle file process has been done
