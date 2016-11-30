@@ -65,7 +65,7 @@ http://ip:3000/api/node/service/ghost
 * how to change port :
 
 ```diff
-- you can change it with the port object to be changed in [config/config.js] file 
+- you can change it with the port object to be changed in [config/config.js] file
 
 ```
 
@@ -77,10 +77,8 @@ http://ip:3000/api/node/service/ghost
 
 ```
 
-#yes,wow,result : hello service
-# you can see index.js file in app/api/node/v1/ghost/
-
-
+>yes,wow,result : hello service
+>you can see index.js file in app/api/node/v1/ghost/
 
 
 # create source/model/handle/ with directory without service
