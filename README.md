@@ -26,7 +26,7 @@ node commands/api create --dir node --ghost index
 ```
 
 ```html
-   // * Params :
+   * Params :
 ```
 
 ```diff
