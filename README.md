@@ -35,6 +35,16 @@ api create model file process has been done
 
 api create process has been done
 
+
+# service start
+
+```
+forever start app.js
+
+```
+
+
+
 #visit on browser the service that you created
 
 http://ip:3000/api/node/service/ghost
@@ -89,6 +99,3 @@ http://ip:3000/api/app/ghost_example/?_token=testuser
 http://ip:3000/blog
 
 http://ip:3000/api/admin/login
-
-# service start
-forever start app.js
