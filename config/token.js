@@ -69,8 +69,8 @@ module.exports = {
      * @type : array
     */
     return {
-      'anyTokenName' : {
-        ip : '192.168.33.1'
+      'none' : {
+        ip : '1.1.1.1'
       }
     };
 
@@ -102,7 +102,7 @@ module.exports = {
     return {
       'all' : {
         ip : [
-          'none'
+          '1.1.1.1'
         ]
       }
     };

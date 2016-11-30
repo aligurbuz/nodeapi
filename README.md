@@ -94,6 +94,15 @@ http://ip:3000/api/node/service/ghost
 ```
 
 
+## Token Restrictions :
+
+```diff
+- method name : restrictions in config/config.js file
+- if you want to user to access both token and specified ip number, write token name to none object restrictions method and change it's ip
+
+```
+
+
 # create source/model/handle/ with directory without service
 
 ```
