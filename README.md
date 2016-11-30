@@ -14,7 +14,10 @@ npm update
 as directory, --dir parameter that means project name
 run the following code on the console]
 
+```
 node commands/api create --dir node --ghost index
+
+```
 
 #yes,as output:
 
