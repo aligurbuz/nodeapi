@@ -13,6 +13,26 @@ var cli = new Cli({
 
 cli.on("get", function(){
 
+  var fs = require('fs');
+  fs = require('fs');
+
+  fs.readFile('./node_modules/sequelize-auto/lib/index.js', 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+
+
+
+    var changedata=data.replace(new RegExp("directory: './models',", "g"),"directory: './model/schemas',");
+
+    fs.writeFile('./node_modules/sequelize-auto/lib/index.js',changedata, function (err) {
+      if (err) return console.log(err);
+      console.log('sequelize-auto sycn true');
+
+    });
+
+  });
+
   global.environment="development";
   var SequelizeAuto = require('sequelize-auto')
   var database=require("../config/database")

@@ -102,7 +102,7 @@ module.exports = {
     return {
       'all' : {
         ip : [
-          '1.1.1.1'
+          'none'
         ]
       }
     };
