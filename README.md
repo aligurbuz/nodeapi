@@ -69,8 +69,7 @@ http://ip:3000/api/node/service/ghost
 
 ```
 
-
-## Service access information :
+* Service access information :
 
 ```diff
 + service/ghost :calls index method in app/api/node/v1/ghost/index.js (actually it is service/ghost/index)
@@ -83,7 +82,7 @@ http://ip:3000/api/node/service/ghost
 >you can see index.js file in app/api/node/v1/ghost/
 
 
-* Service access with token on url :
+## Service access with token on url :
 
 ```diff
 + go to config/token.js file
