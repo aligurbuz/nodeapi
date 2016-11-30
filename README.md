@@ -7,7 +7,9 @@ Simple Rest Api For Node.Js
 ## clone url
 
 ```
-git clone https://github.com/aligurbuz/nodeapi.git
+git clone https://github.com/aligurbuz/nodeapi.git folderName
+
+cd folderName
 
 ```
 
