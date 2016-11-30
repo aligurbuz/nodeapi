@@ -25,10 +25,8 @@ node commands/api create --dir node --ghost index
 
 ```
 
-## Params :
-
 ```html
-   // code for coloring
+   // * Params :
 ```
 
 ```diff
