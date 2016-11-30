@@ -9,21 +9,21 @@
  * @return {json}
  * @public
  */
-class google {
+class index {
 
   //main method
-  index(callback,sourcedata) {
+  index(callback) {
 
     /*
      Add altering object here.
-     Return a promise to correctly handle asynchronicity.
+     Return a async modul to correctly handle asynchronicity.
 
      Example:
-     return callback({test:'hello world'});
+     return callback(result);
      */
 
-    //return callback
-    callback("source google");
+     //callback
+     callback("hello service")
 
 
   }
@@ -31,4 +31,4 @@ class google {
 }
 
 //module exports class object
-module.exports=new google();
+module.exports=index;

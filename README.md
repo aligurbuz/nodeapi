@@ -1,3 +1,6 @@
+#requirements:
+node install
+
 # nodeapi
 Simple Rest Api For Node.Js
 
@@ -5,12 +8,33 @@ Simple Rest Api For Node.Js
 git clone https://github.com/aligurbuz/nodeapi.git
 
 # project start for node_modules
-npm install
+npm update
 
-# create api service
-node commands/api create --dir app --ghost index
+# firstly,create api service (hello service)
+# as directory, --dir parameter that means project name
+# run the following code on the console
 
-node commands/api create --dir app --ghost example
+node commands/api create --dir node --ghost index
+
+#yes,as output:
+
+api create handle file process has been done
+
+api create source file process has been done
+
+api create model file process has been done
+
+api create process has been done
+
+#visit on browser the service that you created
+
+http://ip:3000/api/node/service/ghost
+
+#yes,wow,result : hello service
+# you can see index.js file in app/api/node/v1/ghost/
+
+
+
 
 # create source/model/handle/ with directory without service
 node commands/api create --dir app --ghost foo --no index
