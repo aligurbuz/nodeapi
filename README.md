@@ -10,9 +10,9 @@ git clone https://github.com/aligurbuz/nodeapi.git
 # project start for node_modules
 npm update
 
-<span style="color:#336699;">firstly,create api service (hello service)
+[firstly,create api service (hello service)
 as directory, --dir parameter that means project name
-run the following code on the console </span>
+run the following code on the console]
 
 node commands/api create --dir node --ghost index
 
