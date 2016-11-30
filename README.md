@@ -36,7 +36,7 @@ api create model file process has been done
 api create process has been done
 
 
-# service start
+# we can start our application now
 
 ```
 forever start app.js
