@@ -77,7 +77,7 @@ http://ip:3000/api/node/service/ghost
 
 ```
 
->yes,wow,result : hello service
+>yes,wow!!! you see output as result : hello service
 
 >you can see index.js file in app/api/node/v1/ghost/
 
