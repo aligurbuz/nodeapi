@@ -11,7 +11,7 @@ git clone https://github.com/aligurbuz/nodeapi.git
 
 ```
 
-## project start for node_modules
+## load library called as node_modules for your application
 
 ```
 npm update
