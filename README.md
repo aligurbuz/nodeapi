@@ -61,6 +61,14 @@ http://ip:3000/api/node/service/ghost
 
 ```
 
+
+* how to change port :
+
+```diff
+- you can change it with port object to be changed
+
+```
+
 * Service access information :
 
 ```diff
