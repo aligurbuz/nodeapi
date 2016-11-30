@@ -25,7 +25,7 @@ node commands/api create --dir node --ghost index
 
 ```
 
-* Params *
+* [issue tracker]
 
 
 #yes!!! it worked and as output:
