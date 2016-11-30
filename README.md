@@ -25,9 +25,12 @@ node commands/api create --dir node --ghost index
 
 ```
 
+#Params :
+
 ```diff
-+ this will be highlighted in green
-- this will be highlighted in red
+- dir param : application name... (node as default).You can create new application name as appname/v1 in app/api
+- ghost param : service name... (http://ip:3000/api/node/service/ghost)
+
 ```
 
 
