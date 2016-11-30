@@ -25,7 +25,10 @@ node commands/api create --dir node --ghost index
 
 ```
 
-* [issue tracker]
+```diff
++ this will be highlighted in green
+- this will be highlighted in red
+```
 
 
 #yes!!! it worked and as output:
