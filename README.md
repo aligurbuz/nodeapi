@@ -16,6 +16,8 @@ git clone https://github.com/aligurbuz/nodeapi.git
 ```
 npm update
 
+npm install
+
 ```
 
 ## create your first rest api service
