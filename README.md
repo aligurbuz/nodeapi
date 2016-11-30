@@ -71,6 +71,10 @@ http://ip:3000/api/node/service/ghost
 ```diff
 - you can adjust it with the port object to be changed in [config/config.js] file
 
+OR :
+
+node commands/port change --port portNumber
+
 ```
 
 * Service access information :
