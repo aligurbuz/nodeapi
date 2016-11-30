@@ -87,7 +87,7 @@ http://ip:3000/api/node/service/ghost
 ```diff
 + go to config/token.js file
 + write any ip number instead of 'none' in accessWithoutToken method
-+ yes,you can't access without token to service any more
++ yes,you can't access without token except the specified ip number to service any more
 + token names is token object in TokenForUsers method and is 'myToken' as default
 + now, go to http://ip:3000/api/node/service/ghost?_token=myToken
 
