@@ -37,7 +37,7 @@ module.exports = {
      * @type : array
     */
     var tokens=[
-      'aligurbuz_280384'
+      'myToken'
     ];
 
     /**
@@ -102,7 +102,7 @@ module.exports = {
     return {
       'all' : {
         ip : [
-          '192.168.33.1'
+          'none'
         ]
       }
     };
