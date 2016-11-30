@@ -18,17 +18,14 @@ npm update
 
 ```
 
-
-[firstly,create api service (hello service)
-as directory, --dir parameter that means project name
-run the following code on the console]
+#create your first service
 
 ```
 node commands/api create --dir node --ghost index
 
 ```
 
-#yes,as output:
+#yes!!! it worked and as output:
 
 api create handle file process has been done
 
