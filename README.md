@@ -1,24 +1,24 @@
 #requirements:
 node install
 
-# nodeapi
+## nodeapi
 Simple Rest Api For Node.Js
 
-# clone url
+## clone url
 
 ```
 git clone https://github.com/aligurbuz/nodeapi.git
 
 ```
 
-# project start for node_modules
+## project start for node_modules
 
 ```
 npm update
 
 ```
 
-#create your first rest api service
+## create your first rest api service
 
 ```
 node commands/api create --dir node --ghost index
@@ -34,7 +34,7 @@ node commands/api create --dir node --ghost index
 ```
 
 
-#yes!!! it worked and as output:
+## yes!!! it worked and as output:
 
 > api create handle file process has been done
 
@@ -45,7 +45,7 @@ node commands/api create --dir node --ghost index
 > api create process has been done
 
 
-# we can start our application now
+## we can start our application now
 
 ```
 forever start app.js
@@ -54,7 +54,7 @@ forever start app.js
 
 
 
-#visit on browser the service that you created
+## visit on browser the service that you created
 
 ```
 http://ip:3000/api/node/service/ghost
