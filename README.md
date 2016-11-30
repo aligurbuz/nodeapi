@@ -9,8 +9,14 @@ npm install
 
 # create api service
 node commands/api create --dir app --ghost index
-
 node commands/api create --dir app --ghost example
+
+# create source/model/handle/ with directory without service
+node commands/api create --dir app --ghost foo --no index
+
+# create single file in source/model/handle/
+node commands/api create --dir app --file ghost:source:index:bar
+(creates a file named app/:version/ghost/source/index/bar.js)
 
 # export in model directory all existing table in db
 node commands/dbschema get

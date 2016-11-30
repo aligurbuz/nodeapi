@@ -9,7 +9,7 @@
  * @return {json}
  * @public
  */
-class index {
+class google {
 
   //main method
   index(callback,sourcedata) {
@@ -23,9 +23,7 @@ class index {
      */
 
     //return callback
-    source.src("model").method("user").get(function(result){
-      callback(result)
-    })
+    callback("source google");
 
 
   }
@@ -33,4 +31,4 @@ class index {
 }
 
 //module exports class object
-module.exports=new index();
+module.exports=new google();

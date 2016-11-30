@@ -12,20 +12,18 @@
 class index {
 
   //main method
-  index(callback) {
+  index(callback,sourcedata) {
 
     /*
      Add altering object here.
-     Return a async modul to correctly handle asynchronicity.
+     Return a promise to correctly handle asynchronicity.
 
      Example:
-     return callback(result);
+     return callback({test:'hello world'});
      */
 
-     //callback
-     source.get(function(result){
-       callback(result)
-     })
+    //return callback
+    callback("source index");
 
 
   }
@@ -33,4 +31,4 @@ class index {
 }
 
 //module exports class object
-module.exports=index;
+module.exports=new index();
