@@ -65,7 +65,7 @@ http://ip:3000/api/node/service/ghost
 * how to change port :
 
 ```diff
-- you can change it with the port object to be changed in [config/config.js] file
+- you can adjust it with the port object to be changed in [config/config.js] file
 
 ```
 
