@@ -27,13 +27,13 @@ node commands/api create --dir node --ghost index
 
 #yes!!! it worked and as output:
 
-api create handle file process has been done
+> api create handle file process has been done
 
-api create source file process has been done
+> api create source file process has been done
 
-api create model file process has been done
+> api create model file process has been done
 
-api create process has been done
+> api create process has been done
 
 
 # we can start our application now
