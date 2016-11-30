@@ -27,7 +27,6 @@ cli.on("change", function(){
           return console.log(err);
         }
 
-
         var changedata=data.replace(new RegExp("port            : 3000,", "g"),"port            : "+port+",");
 
         fs.writeFile('./config/config.js',changedata, function (err) {
