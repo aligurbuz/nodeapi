@@ -119,7 +119,7 @@ node commands/port change --port portNumber
 
 ```diff
 
-//source/index.js
+//source/index/index.js
 //method index
 
 source.get(function(result){
@@ -127,7 +127,7 @@ source.get(function(result){
 })
 
 
-//source/index.js
+//source/index/index.js
 //method foo
 
 source.method("foo").get(function(result){
@@ -142,7 +142,7 @@ source.method("foo").get(function(result){
 
 ```diff
 
-//source/foo.js
+//source/index/foo.js
 //method index
 
 source.name("foo").get(function(result){
@@ -150,12 +150,28 @@ source.name("foo").get(function(result){
 })
 
 
-//source/foo.js
+//source/index/foo.js
 //method bar
 
 source.name("foo").method("foo").get(function(result){
   callback(result)
 })
+
+```
+
+
+* how to transfer to data to main file (index.js) from any service content that in source directory :
+
+```diff
+
+//source/otherservice/index.js
+//method index
+
+source.service("otherservice").get(function(result){
+  callback(result)
+})
+
+//name and method can be used
 
 ```
 
