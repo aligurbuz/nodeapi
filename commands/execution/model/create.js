@@ -9,7 +9,7 @@ module.exports = {
 
     var connection=con(appDir,Sequelize);
 
-    var schema=require(""+appDir+"/model/schemas/admins");
+    var schema=require(""+appDir+"/model/schemas/admin");
 
 
     var admin=schema(connection,Sequelize)

@@ -203,3 +203,13 @@ source.service("otherservice").get(function(result){
 node commands/dbschema get
 
 ```
+
+
+### Secondly,run the following code :
+
+* this code will create a model with table name existing on database
+
+```
+node commands/model create --model modelname --table table_name
+
+```

@@ -15,16 +15,15 @@ cli.on("create", function(){
 
   var fs = require('fs');
   fs = require('fs');
-  for (var i in this.argv)
-  {
 
-    if(i!=="_" && i!=="notNull")
+
+    if(this.argv['i']!=="_" && this.argv['i']!=="notNull")
     {
 
       var fs = require('fs');
 
-      var file='./model/'+this.argv[i]+'.js';
-      var namespace=this.argv[i];
+      var file='./model/'+this.argv['model']+'.js';
+      var namespace=this.argv['table'];
 
       fs.readFile('./commands/execution/model/create.js', 'utf8', function (err,data) {
         if (err) {
@@ -44,6 +43,6 @@ cli.on("create", function(){
       return;
     }
 
-  }
+
 
 });
