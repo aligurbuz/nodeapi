@@ -110,11 +110,29 @@ node commands/port change --port portNumber
 
 ```
 
+## Service Sources :
+
+> Source Directory : it directly sends data to service main file (index.js)
+> in this directory can be one and more file.
+
+* how to transfer to data to main file (index.js) from any file that in source directory :
+
+```diff
+
+// source/index.js
+//method index
+
+source.get(function(result){
+  callback(result)
+  })
+
+```
+
 
 ## Database Connection :
 
 ```diff
-- config/database : set your database settings in config/config.js
-- environment : development is local area,other is production area
++ config/database : set your database settings in config/config.js
++ environment : development is local area,other is production area
 
 ```
