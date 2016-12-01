@@ -210,6 +210,6 @@ node commands/dbschema get
 * this code will create a model with table name existing on database
 
 ```
-node commands/model create --model modelname --table table_name
+node commands/model create --model modelname --table tablename
 
 ```
