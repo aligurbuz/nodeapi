@@ -194,3 +194,12 @@ source.service("otherservice").get(function(result){
 
 * createdAt and updatedAt fields are obligatory in your tables ... this is IMPORTANT!!!!
 * and tablo names they must have 's' extension : for example : users,logs
+
+
+## Firstly,run the following code :
+* this code will move to model/schemas directory all your tables existing on database
+
+```
+node commands/dbschema get
+
+```
