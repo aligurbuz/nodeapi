@@ -175,6 +175,14 @@ source.service("otherservice").get(function(result){
 
 ```
 
+* model and handle connection
+
+```diff
+- model Branching : it can be used as source.src("model")..
++ handle Branching : it can be used as source.src("handle")..
+
+```
+
 
 ## Database Connection :
 
