@@ -227,3 +227,13 @@ node commands/model create --model modelname --table tablename
 -join({model : ['task']},"inner") :  like select * from table INNER JOIN task : it is depend on relationship data in model name (such as hasMany)
 
 ```
+
+
+### you can write query builder in app/api/node/v1/service/model/index :
+
+```
+query.table("users").select(['id','username']).where({id:5}).limit(10).get(function(result){
+  callback(result)
+})
+
+```
