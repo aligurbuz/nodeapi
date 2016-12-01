@@ -109,3 +109,12 @@ node commands/port change --port portNumber
 - if you want to user to access both token and specified ip number, write token name to none object restrictions method and change it's ip
 
 ```
+
+
+## Database Connection :
+
+```diff
+- config/database : set your database settings in config/config.js
+- environment : development is local area,other is production area
+
+```
