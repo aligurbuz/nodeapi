@@ -126,6 +126,14 @@ source.get(function(result){
   callback(result)
 })
 
+
+//source/index.js
+//method foo
+
+source.method("foo").get(function(result){
+  callback(result)
+})
+
 ```
 
 
