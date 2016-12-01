@@ -196,7 +196,7 @@ source.service("otherservice").get(function(result){
 * and tablo names they must have 's' extension : for example : users,logs
 
 
-## Firstly,run the following code :
+### Firstly,run the following code :
 * this code will move to model/schemas directory all your tables existing on database
 
 ```
