@@ -191,3 +191,6 @@ source.service("otherservice").get(function(result){
 + environment : development is local area,other is production area
 
 ```
+
+* createdAt and updatedAt fields are obligatory in your tables ... this is IMPORTANT!!!!
+* and tablo names they must have 's' extension : for example : users,logs
