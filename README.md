@@ -115,7 +115,7 @@ node commands/port change --port portNumber
 > Source Directory : it directly sends data to service main file (index.js)
 > in this directory can be one and more file.
 
-* how to transfer to data to main file (index.js) from any file that in source directory :
+* how to transfer to data to main file (index.js) from index.js that in source directory :
 
 ```diff
 
@@ -131,6 +131,29 @@ source.get(function(result){
 //method foo
 
 source.method("foo").get(function(result){
+  callback(result)
+})
+
+```
+
+
+
+* how to transfer to data to main file (index.js) from any file that in source directory :
+
+```diff
+
+//source/foo.js
+//method index
+
+source.name("foo").get(function(result){
+  callback(result)
+})
+
+
+//source/foo.js
+//method bar
+
+source.name("foo").method("foo").get(function(result){
   callback(result)
 })
 
