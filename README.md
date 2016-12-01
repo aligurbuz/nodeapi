@@ -119,12 +119,12 @@ node commands/port change --port portNumber
 
 ```diff
 
-// source/index.js
+//source/index.js
 //method index
 
 source.get(function(result){
   callback(result)
-  })
+})
 
 ```
 
