@@ -110,7 +110,7 @@ node commands/port change --port portNumber
 
 ```
 
-## Service Sources :
+## Service Branching :
 
 > Source Directory : it directly sends data to service main file (index.js)
 > in this directory can be one and more file.
