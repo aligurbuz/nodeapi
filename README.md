@@ -217,13 +217,13 @@ node commands/model create --model modelname --table tablename
 ### Query builder parameters for sequelize orm :
 
 ```diff
-+table("modelName") : it is added to query chaining method and it is obligatory
-+select(['id','username']) : it filters select.. like select id,username from table
-+where({id:1}) : it filters where.. like select * from table where id=1
-+orderBy('id desc') :  like select * from table order by id desc
-+limit(10) :  like select * from table limit 10
-+groupBy('id') :  like select * from table group by id
-+join({model : ['task']}) :  like select * from table LEFT JOIN task : it is depend on relationship data in model name (such as hasMany)
-+join({model : ['task']},"inner") :  like select * from table INNER JOIN task : it is depend on relationship data in model name (such as hasMany)
+-table("modelName") : it is added to query chaining method and it is obligatory
+-select(['id','username']) : it filters select.. like select id,username from table
+-where({id:1}) : it filters where.. like select * from table where id=1
+-orderBy('id desc') :  like select * from table order by id desc
+-limit(10) :  like select * from table limit 10
+-groupBy('id') :  like select * from table group by id
+-join({model : ['task']}) :  like select * from table LEFT JOIN task : it is depend on relationship data in model name (such as hasMany)
+-join({model : ['task']},"inner") :  like select * from table INNER JOIN task : it is depend on relationship data in model name (such as hasMany)
 
 ```
