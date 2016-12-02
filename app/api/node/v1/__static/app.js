@@ -23,7 +23,7 @@ class profile {
      */
 
      //callback
-     callback("static App Provider")
+     callback("static app provider")
 
 
   }
