@@ -22,6 +22,8 @@ class blogExampleServiceName {
      return callback(result);
      */
 
+     //mynode
+
      //callback
      callback("hello service")
 

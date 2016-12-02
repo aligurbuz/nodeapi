@@ -1,5 +1,7 @@
 #!/usr/bin/env '+this.argv['dir']+'
 
+//usage : node commands/async get --modul [parallel] --file node:v1:tour:index[or source/index or handle/index or model/index]
+
 "use strict";
 
 var path = require('path');
