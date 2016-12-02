@@ -9,21 +9,21 @@
  * @return {json}
  * @public
  */
-class index {
+class profile {
 
   //main method
-  index(callback,sourcedata) {
+  get(data,callback) {
 
     /*
      Add altering object here.
-     Return a promise to correctly handle asynchronicity.
+     Return a async modul to correctly handle asynchronicity.
 
      Example:
-     return callback({test:'hello world'});
+     return callback(result);
      */
 
-    //return callback
-    callback("source index");
+     //callback
+     callback("static App Provider")
 
 
   }
@@ -31,4 +31,4 @@ class index {
 }
 
 //module exports class object
-module.exports=new index();
+module.exports=profile;

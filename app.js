@@ -206,7 +206,16 @@ app.use(function(req,res,next){
 
 app.all("/api/:project/service/:name/:method?",function (request,response,next)
 {
-  
+
+  //global static calls
+  var staticApp=require("./config/staticApp");
+  for (var i in staticApp) {
+    var app=i+'_app';
+    var app=require(staticApp[i]);
+    global[i]=new app();
+  }
+
+
   //auth check
   var auth=require("./middleware/auth");
   global.req=request;
