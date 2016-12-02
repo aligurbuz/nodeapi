@@ -16,7 +16,7 @@ var staticApp = module.exports = {
    *     //pre loader
    *
    */
-  app            : './app/api/node/v'+config['api']['version']+'/__static/app',
+  //app            : './app/api/node/v'+config['api']['version']+'/__static/app',
 
 
 
