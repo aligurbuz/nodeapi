@@ -25,6 +25,8 @@ class index {
      //callback
      callback("hello service")
 
+     //mynode
+
 
   }
 
