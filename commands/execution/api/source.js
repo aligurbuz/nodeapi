@@ -22,6 +22,8 @@ class blogExampleServiceName {
      return callback({test:'hello world'});
      */
 
+     //mynode
+
     //return callback
     callback("source blogExampleServiceName");
 
