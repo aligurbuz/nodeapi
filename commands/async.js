@@ -26,6 +26,8 @@ cli.on("get", function(){
 
       var asyncfile=this.argv['file'];
 
+      var place=this.argv['place'];
+
 
       fs.readFile('./commands/execution/async/'+this.argv['modul']+'.js', 'utf8', function (err,asyncdata) {
         if (err) {
@@ -41,7 +43,7 @@ cli.on("get", function(){
             return console.log(err);
           }
 
-          var filedata=data.replace(new RegExp('//mynode', 'g'),async);
+          var filedata=data.replace(new RegExp('//'+place, 'g'),async);
 
 
           fs.writeFile('./app/api/'+file[0]+'/'+file[1]+'/'+file[2]+'/'+file[3]+'.js',filedata, function (err) {
