@@ -4,7 +4,7 @@
  * @param {object} req
  * @public
  */
-var in_array=require("in_array");
+global.in_array=require("in_array");
 
 /**
  * get path for main directory.

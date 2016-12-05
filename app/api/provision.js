@@ -33,8 +33,9 @@ class provision {
      * @return {json}
      * @return
      */
-    callback({success:true,message:'not provision get'});
+     var headers=req['headers'];
 
+     callback({success:true,message:'define message'});
   }
 
 
@@ -47,7 +48,7 @@ class provision {
      * Examples:
      *
      *     // object
-     *     //[projectName_ApiDirectory_File_Method]
+     *     //[projectName_version_directory_index_method]
      *
      * @param {String|Array} types...
      * @return {json}
@@ -90,7 +91,7 @@ class provision {
      * Examples:
      *
      *     // object
-     *     //[projectName_ApiDirectory_File_Method]
+     *     //[projectName_version_directory_index_method]
      *
      * @param {String|Array} types...
      * @return {json}

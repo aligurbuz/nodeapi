@@ -136,7 +136,6 @@ module.exports = {
 
     if(token)
     {
-      var in_array=require("in_array");
       var configtoken=require(""+appDir+"/config/token");
 
       if(in_array(token,configtoken['TokenForUsers']()))
