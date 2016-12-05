@@ -358,7 +358,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
     }
 
     //get provision method
-    var provision_method=''+project_name+'_'+dir+'_'+fileindex+'_'+apimethod;
+    var provision_method=''+project_name+'_v'+config['api']['version']+'_'+dir+'_index_'+apimethod;
 
     if(requestMethod=="get") {
 
@@ -492,10 +492,15 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
       if(config['api']['objectLoader'])
       {
         var objectLoader=require("./app/api/objectLoader");
-        objectLoader[requestMethod](function(object) {
+
+        var objectLoaderParams={
+          version : 'v'+version,
+          project_name : project_name
+        }
+        objectLoader[requestMethod](objectLoaderParams,function(object) {
 
           if(typeof object=="object") {
-            objectLoader[exceptFor](function(except) {
+            objectLoader[exceptFor](objectLoaderParams,function(except) {
 
               if(!in_array(provision_method,except))
               {
@@ -504,7 +509,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
               if(typeof objectLoader[provision_method]=="function") {
 
-                objectLoader[provision_method](function(special)
+                objectLoader[provision_method](objectLoaderParams,function(special)
                 {
                   data=base.merge(special,data);
                 })
@@ -515,7 +520,7 @@ app.all("/api/:project/service/:name/:method?",function (request,response,next)
 
           }
 
-        },data)
+        })
       }
 
       //res.json

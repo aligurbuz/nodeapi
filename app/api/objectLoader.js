@@ -16,7 +16,7 @@
 
 class objectLoader {
 
-  get(callback,data) {
+  get(params,callback) {
 
     /**
      * general object loader get method
@@ -24,20 +24,35 @@ class objectLoader {
      * call api service project dir fileindex method
      * Examples:
      *
-     *     // {node:'api_node'}
-     *     //{} empty data
+     *     // {project_name:{version:{data:data}}}
+     *     //{'all':{data:data}} valid for all status
      *
      *
      * @param {String|Array} types...
      * @return {json}
      * @return
      */
-    callback({client:base.namespace()});
+    var objectParams={
+      'all':{
+        client:base.namespace()
+      }
+    }
+
+    //return callback
+    //all key is valid for every project name and version
+    if(objectParams.hasOwnProperty("all")){
+      callback(objectParams['all']);
+    }
+    else {
+      //unique for project name and version
+      callback(objectParams[params['project_name']][params['version']]);
+    }
+
 
   }
 
 
-  exceptForGet(callback,data) {
+  exceptForGet(params,callback) {
 
     /**
      * general object loader method except for get
@@ -46,7 +61,7 @@ class objectLoader {
      * Examples:
      *
      *     // object
-     *     //[projectName_ApiDirectory_File_Method]
+     *     //[projectName_version_directory_index_method]
      *
      * @param {String|Array} types...
      * @return {json}
@@ -57,7 +72,7 @@ class objectLoader {
   }
 
 
-  post(callback,data) {
+  post(params,callback) {
 
     /**
      * general object loader post method
@@ -73,12 +88,26 @@ class objectLoader {
      * @return {json}
      * @return
      */
-    callback({});
+     var objectParams={
+       'all':{
+         //
+       }
+     }
+
+     //return callback
+     //all key is valid for every project name and version
+     if(objectParams.hasOwnProperty("all")){
+       callback(objectParams['all']);
+     }
+     else {
+       //unique for project name and version
+       callback(objectParams[params['project_name']][params['version']]);
+     }
 
   }
 
 
-  exceptForPost(callback,data) {
+  exceptForPost(params,callback) {
 
     /**
      * general object loader method except for post
@@ -87,7 +116,7 @@ class objectLoader {
      * Examples:
      *
      *     // object
-     *     //[projectName_ApiDirectory_File_Method]
+     *     //[projectName_version_directory_index_method]
      *
      * @param {String|Array} types...
      * @return {json}
